@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8520966716116655227
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8520966716116655225}
+  - component: {fileID: 8520966716116655226}
+  - component: {fileID: 8520966716116655224}
+  m_Layer: 0
+  m_Name: FreestylersPrefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8520966716116655225
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8520966716116655227}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.1246176, y: 0.38780966, z: 90}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8520966716116655226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8520966716116655227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16e7c8c6cfc1e234a90b3f24b1b21de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8520966716116655224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8520966716116655227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2803aa64066a254c94079c6ebf0d5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolutionsString: []
+  currentResolutionIndex: 0
+  currentMusicVolume: 0
+  currentSFX_Volume: 0
+  fullscreen: 0
+  defaultFullscreenValue: 0
+  defaultMusicVolume: 50
+  defaultSFX_Volume: 50
+  FPSLimits: 3c0000004b0000007800000090000000
+  FPSLimitIterator: 0
+  vSyncOn: 0
+  inputKeyboard: 1
+  languageIterator: 0
+  languageMax: 0

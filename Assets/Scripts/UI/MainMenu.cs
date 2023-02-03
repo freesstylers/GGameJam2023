@@ -11,12 +11,31 @@ public class MainMenu : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Twitter()
     {
-        if (Rewired.ReInput.players.Players[0].GetButton("ButtonA"))
-        {
-            Debug.Log("Input");
-        }
+        Application.OpenURL("https://twitter.com/FreeStylers_Dev");
+    }
+
+    public void ItchIO()
+    {
+        Application.OpenURL("https://freestylers-studio.itch.io/");
+    }
+
+    public void GlobalGameJam()
+    {
+        Application.OpenURL("https://globalgamejam.org/");
+    }
+
+    public void PlayButton()
+    {
+    }
+
+    public void Settings()
+    {
+    }
+
+    public void HighScores()
+    {
+
     }
 }

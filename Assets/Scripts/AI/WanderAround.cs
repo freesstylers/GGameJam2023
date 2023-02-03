@@ -12,14 +12,11 @@ public class WanderAround : MonoBehaviour
     public float intervaloX, intervaloY, intervaloXB, intervaloYB;
     public float minTime, maxTime;
     float time;
-    float lastXPos;
-    float lastAltitude;
     float actualTime = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        lastAltitude = Mathf.Infinity;
         ini = new Vector2(transform.position.x, transform.transform.position.y);
         fin = new Vector2(Random.Range(objectToWanderAround.transform.position.x - intervaloX, objectToWanderAround.transform.position.x + intervaloX), Random.Range(objectToWanderAround.transform.position.y - intervaloY, objectToWanderAround.transform.position.y + intervaloY));
         NewPosition();
@@ -29,7 +26,6 @@ public class WanderAround : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (actualTime < time)
         {
             actualTime += Time.deltaTime;
