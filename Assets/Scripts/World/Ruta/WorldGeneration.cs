@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class WorldGeneration : MonoBehaviour
 {
-    public int hNiveles_;
     public int vNiveles_;
+    public int hNiveles_;
     public float desfase_;
     public Vector2 cuadrado_;
     [Range(1, 3)] public int maxNodos_;
@@ -28,12 +28,12 @@ public class WorldGeneration : MonoBehaviour
     private void InitMatrix()
     {
         //Init
-        logicMatrix = new int[vNiveles_][];
-        for (int i = 0; i < vNiveles_; i++)
-        {
-            logicMatrix[i] = new int[hNiveles_];
-        }
+        logicMatrix = new int[hNiveles_][];
         for (int i = 0; i < hNiveles_; i++)
+        {
+            logicMatrix[i] = new int[vNiveles_];
+        }
+        for (int i = 0; i < vNiveles_; i++)
         {
             logicMatrix[0][i] = 1;
         }
@@ -47,7 +47,7 @@ public class WorldGeneration : MonoBehaviour
             ResetLevel(level);
             for (int i = 0; i < maxNodos_; i++)
             {
-                int rnd = Random.Range(0, hNiveles_);
+                int rnd = Random.Range(0, vNiveles_);
                 logicMatrix[level][rnd] = 1;
             }
         } while (!IsLevelOk(level) || !IsLLevelOk(level));
@@ -55,7 +55,7 @@ public class WorldGeneration : MonoBehaviour
 
     private void ResetLevel(int level)
     {
-        for (int i = 0; i < hNiveles_; i++)
+        for (int i = 0; i < vNiveles_; i++)
         {
             logicMatrix[level][i] = 0;
         }
@@ -78,7 +78,7 @@ public class WorldGeneration : MonoBehaviour
     public void CreateMap()
     {
         InitMatrix();
-        for (int i = 0; i < vNiveles_; i++)
+        for (int i = 0; i < hNiveles_; i++)
         {
             FillLogicMatrix(i);
         }
@@ -93,17 +93,17 @@ public class WorldGeneration : MonoBehaviour
     private List<List<RuteNodes>> CreateLevel()
     {
         List<List<RuteNodes>> gg = new List<List<RuteNodes>>();
-        for (int i = 0; i < vNiveles_; i++)
+        for (int i = 0; i < hNiveles_; i++)
         {
             List<RuteNodes> g = new List<RuteNodes>();
-            for (int j = 0; j < hNiveles_; j++)
+            for (int j = 0; j < vNiveles_; j++)
             {
                 if (logicMatrix[i][j] == 1)
                 {
-                    float x = Random.Range(-desfase_, desfase_) + j;
-                    //x = (x - (hNiveles_ / 2f));
-                    float y = Random.Range(-desfase_, desfase_) + i;
-                    //y = (y - (vNiveles_ / 2f));
+                    float x = (j - ((vNiveles_ - 1) / 2f)) * cuadrado_.x;
+                    x = Random.Range(-desfase_, desfase_) + x;
+                    float y = (i - ((hNiveles_ - 1) / 2f)) * cuadrado_.y;
+                    y = Random.Range(-desfase_, desfase_) + y;
                     RuteNodes obj = Instantiate(prefab_.gameObject, gameObject.transform).GetComponent<RuteNodes>();
                     obj.transform.position = new Vector2(x, y);
                     g.Add(obj);
@@ -124,11 +124,11 @@ public class WorldGeneration : MonoBehaviour
     private bool IsLLevelOk(int level)
     {
         level -= 1;
-        if (level < 0 || level >= hNiveles_ - 1)
+        if (level < 0 || level >= vNiveles_ - 1)
             return true;
 
         bool isOk = true;
-        for (int i = 0; i < hNiveles_; i++)
+        for (int i = 0; i < vNiveles_; i++)
         {
             bool[] ok = { false, false, false };
             if (logicMatrix[level][i] != 1)
@@ -137,7 +137,7 @@ public class WorldGeneration : MonoBehaviour
             ok[1] = logicMatrix[level + 1][i] == 1;
             if (i > 0)
                 ok[0] = logicMatrix[level + 1][i - 1] == 1;
-            if (i < hNiveles_-1)
+            if (i < vNiveles_-1)
                 ok[2] = logicMatrix[level + 1][i + 1] == 1;
 
             isOk = isOk && (ok[0] || ok[1] || ok[2]);
@@ -152,7 +152,7 @@ public class WorldGeneration : MonoBehaviour
             return true;
 
         bool isOk = true;
-        for (int i = 0; i < hNiveles_; i++)
+        for (int i = 0; i < vNiveles_; i++)
         {
             bool[] ok = { false, false, false };
             if (logicMatrix[level][i] != 1)
@@ -161,7 +161,7 @@ public class WorldGeneration : MonoBehaviour
             ok[1] = logicMatrix[level - 1][i] == 1;
             if (i > 0)
                 ok[0] = logicMatrix[level - 1][i - 1] == 1;
-            if (i < hNiveles_ - 1)
+            if (i < vNiveles_ - 1)
                 ok[2] = logicMatrix[level - 1][i + 1] == 1;
 
             isOk = isOk && (ok[0] || ok[1] || ok[2]);
@@ -174,9 +174,9 @@ public class WorldGeneration : MonoBehaviour
     #region LINK
     private void LinkNodes()
     {
-        for (int i = 0; i < vNiveles_; i++)
+        for (int i = 0; i < hNiveles_; i++)
         {
-            for (int j = 0; j < hNiveles_; j++)
+            for (int j = 0; j < vNiveles_; j++)
             {
                 if(logicMatrix[i][j] == 1)
                 {
@@ -191,7 +191,7 @@ public class WorldGeneration : MonoBehaviour
     {
         try
         {
-            if (y + 1 == vNiveles_)
+            if (y + 1 == hNiveles_)
             {
                 gm[y][x].SetNextNode(fin_);
                 return;
@@ -201,7 +201,7 @@ public class WorldGeneration : MonoBehaviour
                 gm[y][x].SetNextNode(gm[y + 1][x], 1);
             if (x > 0 && logicMatrix[y + 1][x - 1] == 1)
                 gm[y][x].SetNextNode(gm[y + 1][x - 1], 0);
-            if (x < hNiveles_ - 1 && logicMatrix[y + 1][x + 1] == 1)
+            if (x < vNiveles_ - 1 && logicMatrix[y + 1][x + 1] == 1)
                 gm[y][x].SetNextNode(gm[y + 1][x + 1], 2);
         }
         catch (System.Exception e)
@@ -226,7 +226,7 @@ public class WorldGeneration : MonoBehaviour
                 gm[y][x].SetPrevNode(gm[y - 1][x], 1);
             if (x > 0 && logicMatrix[y - 1][x - 1] == 1)
                 gm[y][x].SetPrevNode(gm[y - 1][x - 1], 0);
-            if (x < hNiveles_ - 1 && logicMatrix[y - 1][x + 1] == 1)
+            if (x < vNiveles_ - 1 && logicMatrix[y - 1][x + 1] == 1)
                 gm[y][x].SetPrevNode(gm[y - 1][x + 1], 2);
 
         }
@@ -238,11 +238,11 @@ public class WorldGeneration : MonoBehaviour
         }
     }
 
-    //No me gusta esto, ver otra forma porfa =(
+
     private void LinkIniFin()
     {
         int f = 0, n = 0;
-        for (int i = 0; i < hNiveles_; i++)
+        for (int i = 0; i < vNiveles_; i++)
         {            
             if (logicMatrix[0][i] == 1)
             {
@@ -250,9 +250,9 @@ public class WorldGeneration : MonoBehaviour
                 n++;
             }
 
-            if (logicMatrix[vNiveles_ - 1][i] == 1)
+            if (logicMatrix[hNiveles_ - 1][i] == 1)
             {
-                fin_.SetPrevNode(gm[vNiveles_ - 1][i], f);
+                fin_.SetPrevNode(gm[hNiveles_ - 1][i], f);
                 f++;
             }
         }

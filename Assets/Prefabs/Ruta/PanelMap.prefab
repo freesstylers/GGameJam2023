@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2819017421666793867}
   - component: {fileID: 2819017421666793865}
-  - component: {fileID: 2819017421666793866}
   m_Layer: 5
   m_Name: PanelMap
   m_TagString: Untagged
@@ -47,36 +46,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2819017421666793860}
   m_CullTransparentMesh: 1
---- !u!114 &2819017421666793866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2819017421666793860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &2819017422297367636
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,10 +92,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c6a78900fbb1254ba411ba66a7b0417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hNiveles_: 9
-  vNiveles_: 5
+  vNiveles_: 4
+  hNiveles_: 4
   desfase_: 0.2
-  cuadrado_: {x: 5, y: 5}
+  cuadrado_: {x: 0.8, y: 1.1}
   maxNodos_: 3
   prefab_: {fileID: 8487163466773408093, guid: 8a5c03353526d7442af900780165036b, type: 3}
   ini_: {fileID: 5969344681538684512}
@@ -145,11 +114,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 682009754358149861, guid: 8a5c03353526d7442af900780165036b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 682009754358149861, guid: 8a5c03353526d7442af900780165036b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 682009754358149861, guid: 8a5c03353526d7442af900780165036b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -218,11 +187,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 682009754358149861, guid: 8a5c03353526d7442af900780165036b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 682009754358149861, guid: 8a5c03353526d7442af900780165036b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 682009754358149861, guid: 8a5c03353526d7442af900780165036b, type: 3}
       propertyPath: m_LocalPosition.z
