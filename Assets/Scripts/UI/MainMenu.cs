@@ -17,7 +17,8 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        settingsGameObject.SetActive(settingsOpened);
+        creditsGameObject.SetActive(creditsOpened);
     }
 
     public void Twitter()
