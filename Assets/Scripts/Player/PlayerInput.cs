@@ -12,19 +12,21 @@ public class PlayerInput : MonoBehaviour
     public float Speed = 1.0F;
     public float AttackDuration = 1.0F;
 
-
     public Rigidbody2D _rigidbody;
     public MeleeAttackHandler _attackArea;
 
-
-
     Vector2 _lookDir;
 
+    Animator animator;
+    Transform pivot;
 
+    public float deadZone = 0.25f;
     // Start is called before the first frame update
     void Awake()
     {
         _attackArea.Initialize(this);
+        animator = GetComponent<Animator>();
+        pivot = transform.GetChild(0);
     }
 
     // Update is called once per frame
@@ -97,14 +99,26 @@ public class PlayerInput : MonoBehaviour
 
         _lookDir = newLookDir;
 
-        if (_lookDir.y > 0)
-            transform.localEulerAngles = new Vector3(0, 0, 0);
-        else if (_lookDir.y < 0)
-            transform.localEulerAngles = new Vector3(0, 0, 180);
-        else if (_lookDir.x < 0)
-            transform.localEulerAngles = new Vector3(0, 0, 90);
-        else if (_lookDir.x > 0)
-            transform.localEulerAngles = new Vector3(0, 0, 270);
+        if (_lookDir.y > deadZone)
+        {
+            pivot.localEulerAngles = new Vector3(0, 0, 0);
+            animator.Play("piojoseUp");
+        }
+        else if (_lookDir.y < -deadZone)
+        {
+            pivot.localEulerAngles = new Vector3(0, 0, 180);
+            animator.Play("piojoseDown");
+        }
+        else if (_lookDir.x < -deadZone)
+        {
+            pivot.localEulerAngles = new Vector3(0, 0, 90);
+            animator.Play("piojoseLeft");
+        }
+        else if (_lookDir.x > deadZone)
+        {
+            pivot.localEulerAngles = new Vector3(0, 0, 270);
+            animator.Play("piojoseRight");
+        }
     }
 
     Vector2 DetermineLookDir(float x, float y)
@@ -124,6 +138,26 @@ public class PlayerInput : MonoBehaviour
         float y = Rewired.ReInput.players.Players[0].GetAxis("YAxisMove");
         float x = Rewired.ReInput.players.Players[0].GetAxis("XAxisMove");
 
+        if (y > deadZone)
+        {
+            pivot.localEulerAngles = new Vector3(0, 0, 0);
+            animator.Play("piojoseUp");
+        }
+        else if (y < -deadZone)
+        {
+            pivot.localEulerAngles = new Vector3(0, 0, 180);
+            animator.Play("piojoseDown");
+        }
+        else if (x < -deadZone)
+        {
+            pivot.localEulerAngles = new Vector3(0, 0, 90);
+            animator.Play("piojoseLeft");
+        }
+        else if (x > deadZone)
+        {
+            pivot.localEulerAngles = new Vector3(0, 0, 270);
+            animator.Play("piojoseRight");
+        }
 
         _rigidbody.velocity = new Vector2(x * Speed, y * Speed);
     }
