@@ -5,13 +5,24 @@ using UnityEngine.Tilemaps;
 
 public class TileGenerator : MonoBehaviour
 {
-    public Tile[] tiles_;
-    public Tilemap tileMap_;
+    private Tile[][] tilesByBiome;
+    public Tile[] tilesDefault_;
+    public Tile[] tilesDermatitis_;
+    public Tile[] tilesCaspa_;
+    public Tile[] tilesDark_;
+    public int biomaType;
+    private Tilemap tileMap_;
 
     public RectTransform map_;
 
     private void Start()
     {
+        tileMap_ = GetComponent<Tilemap>();
+        tilesByBiome = new Tile[4][];
+        tilesByBiome[0] = tilesDefault_;
+        tilesByBiome[1] = tilesDermatitis_;
+        tilesByBiome[2] = tilesCaspa_;
+        tilesByBiome[3] = tilesDark_;
         GenerateTiles();
     }
 
@@ -23,7 +34,7 @@ public class TileGenerator : MonoBehaviour
         {
             for (int j = (int)(map_.position.y - height/2); j < (map_.position.y + height / 2); j++)
             {
-                tileMap_.SetTile(new Vector3Int(i, j, 0), tiles_[Random.Range(0, tiles_.Length)]);
+                tileMap_.SetTile(new Vector3Int(i, j, 0), tilesByBiome[biomaType][Random.Range(0, tilesByBiome[biomaType].Length)]);
             }
         }
     }
