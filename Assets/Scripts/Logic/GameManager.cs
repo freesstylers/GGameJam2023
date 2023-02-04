@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public Settings optionsLoader;
     public LevelLoader levelLoader;
+    public PauseMenu pauseMenu;
 
     int hairsCollected;
     int louseAccumulated;
@@ -17,7 +18,7 @@ public class GameManager : MonoBehaviour
     enum Difficulty { Bald, Normal, Hippie };
 
     Difficulty currentDifficulty = Difficulty.Normal;
-    void Start()
+    void Awake()
     {
         if (instance == null)
         {
@@ -29,6 +30,14 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(this);
+        }
+    }
+
+    private void Update()
+    {
+        if (Rewired.ReInput.players.Players[0].GetButtonDown("ButtonStart"))
+        {
+            pauseMenu.TogglePause();
         }
     }
 

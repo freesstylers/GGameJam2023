@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using Rewired;
 
 public class MainMenu : MonoBehaviour
@@ -11,6 +13,8 @@ public class MainMenu : MonoBehaviour
     GameObject settingsGameObject;
     [SerializeField]
     GameObject creditsGameObject;
+
+    GameObject selected;
 
     bool settingsOpened = false;
     bool creditsOpened = false;
@@ -24,6 +28,11 @@ public class MainMenu : MonoBehaviour
     public void Twitter()
     {
         Application.OpenURL("https://twitter.com/FreeStylers_Dev");
+    }
+
+    public void GGJ()
+    {
+        Application.OpenURL("https://www.gamejam.es");
     }
 
     public void ItchIO()
@@ -46,13 +55,19 @@ public class MainMenu : MonoBehaviour
 
         if (settingsOpened)
         {
+            selected = EventSystem.current.currentSelectedGameObject;
+
             containerGameObject.SetActive(false);
             settingsGameObject.SetActive(true);
+
+            EventSystem.current.SetSelectedGameObject(settingsGameObject.GetComponentInChildren<Button>().gameObject);
         }
         else
         {
             containerGameObject.SetActive(true);
             settingsGameObject.SetActive(false);
+
+            EventSystem.current.SetSelectedGameObject(selected);
         }
     }
 
@@ -67,13 +82,19 @@ public class MainMenu : MonoBehaviour
 
         if (creditsOpened)
         {
+            selected = EventSystem.current.currentSelectedGameObject;
+
             containerGameObject.SetActive(false);
             creditsGameObject.SetActive(true);
+
+            EventSystem.current.SetSelectedGameObject(creditsGameObject.GetComponentInChildren<Button>().gameObject);
         }
         else
         {
             containerGameObject.SetActive(true);
             creditsGameObject.SetActive(false);
+
+            EventSystem.current.SetSelectedGameObject(selected);
         }
     }
 }

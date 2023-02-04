@@ -11,15 +11,27 @@ public class PauseMenu : MonoBehaviour
 
     bool settingsOpened = false;
 
+    public void TogglePause()
+    {
+        if (settingsOpened)
+            BackToGame();
+        else
+            Pause();
+    }
+
     public void Pause()
     {
         Time.timeScale = 0;
+
+        Settings();
     }
 
     public void BackToGame()
     {
         //Unpause
         Time.timeScale = 1;
+
+        Settings();
     }
 
     public void ToMainMenu()
