@@ -5,7 +5,8 @@ using UnityEngine;
 public class MoveTowards : MonoBehaviour
 {
     Transform target;
-    // Start is called before the first frame update
+
+    public float detectDistance;
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -14,6 +15,7 @@ public class MoveTowards : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, target.position, Time.deltaTime);
+        if(Vector2.Distance(target.transform.position, transform.position) < detectDistance)
+            transform.position = Vector3.Lerp(transform.position, target.position, Time.deltaTime);
     }
 }
