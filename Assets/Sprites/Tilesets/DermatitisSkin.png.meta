@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b7c547c0a70161f48a7efbc8c70aeb45
+guid: ff5311358a445ac4681d36ddde088abd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Skin_0
+      name: DermatitisSkin_0
       rect:
         serializedVersion: 2
         x: 0
@@ -119,14 +119,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53bec1b60440cfd4b8847de62ab61bc8
-      internalID: -446080612
+      spriteID: d9e697d32d8dee44c80200fd13b501e5
+      internalID: 162828790
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skin_1
+      name: DermatitisSkin_1
       rect:
         serializedVersion: 2
         x: 32
@@ -140,14 +140,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00910c6799f42ba4d90add0dc6849ccd
-      internalID: 1038064020
+      spriteID: 0ef5977ce0a81094b964e2a5d583c153
+      internalID: -1906256780
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skin_2
+      name: DermatitisSkin_2
       rect:
         serializedVersion: 2
         x: 0
@@ -161,14 +161,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4d68aed120dfdd47bd9a28885aae3a4
-      internalID: -39825240
+      spriteID: 3603e89c3ecac6748a953b03d755403f
+      internalID: 858313201
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skin_3
+      name: DermatitisSkin_3
       rect:
         serializedVersion: 2
         x: 32
@@ -182,8 +182,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1cfa7225a311ba94da5c6f14ee866343
-      internalID: 2021595136
+      spriteID: a51cbabc1e0855149b630c8518631b62
+      internalID: 460974999
       vertices: []
       indices: 
       edges: []
@@ -199,10 +199,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Skin_0: -446080612
-      Skin_1: 1038064020
-      Skin_3: 2021595136
-      Skin_2: -39825240
+      DermatitisSkin_1: -1906256780
+      DermatitisSkin_0: 162828790
+      DermatitisSkin_3: 460974999
+      DermatitisSkin_2: 858313201
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

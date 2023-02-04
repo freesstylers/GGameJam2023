@@ -1,9 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PeloSpawnerScript : MonoBehaviour
 {
+    private Tile[][] tilesByBiome;
+    public Tile[] tilesDefault_;
+    public Tile[] tilesDermatitis_;
+    public Tile[] tilesCaspa_;
+    public Tile[] tilesDark_;
+    public int biomaType;
+    Tilemap tileMap_;
+
     public GameObject pelo_;
     public GameObject pared_;
 
@@ -18,8 +27,15 @@ public class PeloSpawnerScript : MonoBehaviour
     public float paredHorizontalDistanceVariance_;
     public float paredVariance_;
 
+
     void Start()
     {
+        tilesByBiome = new Tile[4][];
+        tilesByBiome[0] = tilesDefault_;
+        tilesByBiome[1] = tilesDermatitis_;
+        tilesByBiome[2] = tilesCaspa_;
+        tilesByBiome[3] = tilesDark_;
+        tileMap_ = GetComponent<Tilemap>();
         RectTransform tr_ = GetComponent<RectTransform>();
         GenerarPelos(tr_);
         GenerarParedes(tr_);
@@ -75,56 +91,97 @@ public class PeloSpawnerScript : MonoBehaviour
 
     private void GenerarParedes(RectTransform tr_)
     {
-        GenerarParedLateralDerecha(tr_, tr_.position.x - tr_.rect.width / 2 + paredWidth_);
-        GenerarParedLateralIzquierda(tr_, tr_.position.x + tr_.rect.width / 2 - paredWidth_);
-    }
-
-    private void GenerarParedLateralDerecha(RectTransform tr_, float xPos)
-    {
-        float iniPosX = xPos;
+        //Posiciones iniciales eje X
+        float iniPosXIzq = tr_.position.x - tr_.rect.width / 2 + paredWidth_;
+        float iniPosXDer = tr_.position.x + tr_.rect.width / 2 - paredWidth_;
         float iniPosY = tr_.position.y - tr_.rect.height / 2;
 
-        float minPosX = xPos - paredVariance_;
-        float maxPosX = xPos + paredVariance_;
+        //Posiciones minimas y maximas de varianza en pared izquierda
+        float minPosXIzq = iniPosXIzq - paredVariance_;
+        float maxPosXIzq = iniPosXIzq + paredVariance_;
 
-        float lastX = xPos;
-        for(int i = 0; i < tr_.rect.height; i++)
-        {
-            GameObject thisPared = Instantiate(pared_);
-            Vector2 thisParedPos = new Vector2();
+        //Posiciones minimas y maximas de varianza en pared derecha
+        float minPosXDer = iniPosXDer - paredVariance_;
+        float maxPosXDer = iniPosXDer + paredVariance_;
 
-            thisParedPos.x = Mathf.Max(minPosX, lastX + Random.Range(-paredHorizontalDistanceVariance_, paredHorizontalDistanceVariance_));
-            thisParedPos.y = iniPosY + i;
+        //Lista de paredes para hacer el seteo de sprites correctos
+        List<GameObject> paredesIzq = new List<GameObject>();
+        List<GameObject> paredesDer = new List<GameObject>();
 
-            thisPared.transform.position = thisParedPos;
-            lastX = thisParedPos.x;
-
-            thisPared.transform.parent = tr_;
-        }
-    }
-    private void GenerarParedLateralIzquierda(RectTransform tr_, float xPos)
-    {
-        float iniPosX = xPos;
-        float iniPosY = tr_.position.y - tr_.rect.height / 2;
-
-        float minPosX = xPos - paredVariance_;
-        float maxPosX = xPos + paredVariance_;
-
-        float lastX = xPos;
+        //Posicion de la ultima pared colocada
+        float lastXIzq = iniPosXIzq;
+        float lastXDer = iniPosXDer;
         for (int i = 0; i < tr_.rect.height; i++)
         {
-            GameObject thisPared = Instantiate(pared_);
-            Vector2 thisParedPos = new Vector2();
+            //Paredes de izquierdas
+            GameObject thisParedIzq = Instantiate(pared_);
+            Vector2 thisParedPosIzq = new Vector2();
 
-            thisParedPos.x = Mathf.Min(minPosX, lastX + Random.Range(-paredHorizontalDistanceVariance_, paredHorizontalDistanceVariance_));
-            thisParedPos.y = iniPosY + i;
+            thisParedPosIzq.x = Mathf.Max(minPosXIzq, lastXIzq + Random.Range(-paredHorizontalDistanceVariance_, paredHorizontalDistanceVariance_));
+            thisParedPosIzq.x = (int)Mathf.Min(thisParedPosIzq.x, maxPosXIzq);
+            thisParedPosIzq.y = iniPosY + i;
 
-            thisPared.transform.position = thisParedPos;
-            lastX = thisParedPos.x;
+            thisParedIzq.transform.position = thisParedPosIzq;
+            lastXIzq = thisParedPosIzq.x;
+            thisParedIzq.transform.parent = tr_;
+            paredesIzq.Add(thisParedIzq);
+            
+            //Paredes fachas
+            GameObject thisParedDer = Instantiate(pared_);
+            Vector2 thisParedPosDer = new Vector2();
 
-            thisPared.transform.parent = tr_;
+            thisParedPosDer.x = Mathf.Min(maxPosXDer, lastXDer + Random.Range(-paredHorizontalDistanceVariance_, paredHorizontalDistanceVariance_));
+            thisParedPosDer.x = (int)Mathf.Max(thisParedPosDer.x, minPosXDer);
+            thisParedPosDer.y = iniPosY + i;
+
+            if (lastXDer < thisParedPosDer.x) thisParedPosDer.x -= 1;
+            thisParedDer.transform.position = thisParedPosDer;
+            lastXDer = thisParedPosDer.x;
+            thisParedDer.transform.parent = tr_;
+            paredesDer.Add(thisParedDer);
+
+            //Relleno de tiles entre paredes
+            for (int x = (int)thisParedPosIzq.x-1; x < thisParedPosDer.x+1; x++)
+            {
+                tileMap_.SetTile(new Vector3Int(x, (int)(iniPosY + i), 0), tilesByBiome[biomaType][Random.Range(0, tilesByBiome[biomaType].Length)]);
+            }
+        }
+
+        //Asignacion de sprites de pared
+        paredesIzq[0].GetComponent<ParedScript>().setSprite(1);
+        paredesDer[0].GetComponent<ParedScript>().setSprite(4);
+        for(int i = 1; i < paredesIzq.Count; i++)
+        {
+            //Paredes izquierdas
+            if(paredesIzq[i].transform.position.x < paredesIzq[i-1].transform.position.x)
+            {
+                paredesIzq[i - 1].GetComponent<ParedScript>().setSprite(0);
+            } 
+            else if (paredesIzq[i].transform.position.x > paredesIzq[i - 1].transform.position.x)
+            {
+                paredesIzq[i - 1].GetComponent<ParedScript>().setSprite(2);
+                paredesIzq[i - 1].transform.position = new Vector2(paredesIzq[i - 1].transform.position.x + 1, paredesIzq[i - 1].transform.position.y);
+            } 
+            else
+            {
+                paredesIzq[i - 1].GetComponent<ParedScript>().setSprite(1);
+            }
+
+            //Paredes derechas
+            if (paredesDer[i].transform.position.x < paredesDer[i - 1].transform.position.x)
+            {
+                paredesDer[i - 1].GetComponent<ParedScript>().setSprite(3);
+            }
+            else if (paredesIzq[i].transform.position.x > paredesIzq[i - 1].transform.position.x)
+            {
+                paredesDer[i - 1].GetComponent<ParedScript>().setSprite(5);
+                paredesDer[i - 1].transform.position = new Vector2(paredesDer[i - 1].transform.position.x + 1, paredesDer[i - 1].transform.position.y);
+            }
+            else
+            {
+                paredesDer[i - 1].GetComponent<ParedScript>().setSprite(4);
+            }
         }
     }
-
 
 }

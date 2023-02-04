@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b7c547c0a70161f48a7efbc8c70aeb45
+guid: 372a23d98fc767348b9fccee2d23a3e3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -105,12 +105,54 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Skin_0
+      name: ParedesPelos_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9be952fa95450984da49b92add042273
+      internalID: 758779632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ParedesPelos_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7289684d1deb464faa5dacbd0bee96d
+      internalID: 991681671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ParedesPelos_2
       rect:
         serializedVersion: 2
         x: 0
         y: 32
-        width: 32
+        width: 64
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -119,19 +161,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53bec1b60440cfd4b8847de62ab61bc8
-      internalID: -446080612
+      spriteID: aff96113cf0c2904b97185b950a37656
+      internalID: -591770612
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skin_1
+      name: ParedesPelos_3
       rect:
         serializedVersion: 2
-        x: 32
+        x: 64
         y: 32
-        width: 32
+        width: 64
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -140,19 +182,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00910c6799f42ba4d90add0dc6849ccd
-      internalID: 1038064020
+      spriteID: 8e30dc7d5d2059448a6e5c7e1eeebf5b
+      internalID: 1001340284
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skin_2
+      name: ParedesPelos_4
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
+        width: 64
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -161,19 +203,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4d68aed120dfdd47bd9a28885aae3a4
-      internalID: -39825240
+      spriteID: 1f1b64405f482b242ab750824fb2e8a7
+      internalID: 291440246
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skin_3
+      name: ParedesPelos_5
       rect:
         serializedVersion: 2
-        x: 32
+        x: 64
         y: 0
-        width: 32
+        width: 64
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -182,8 +224,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1cfa7225a311ba94da5c6f14ee866343
-      internalID: 2021595136
+      spriteID: 228a6ec4ed4150544805b4999e459706
+      internalID: -966040903
       vertices: []
       indices: 
       edges: []
@@ -199,10 +241,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Skin_0: -446080612
-      Skin_1: 1038064020
-      Skin_3: 2021595136
-      Skin_2: -39825240
+      ParedesPelos_1: 991681671
+      ParedesPelos_4: 291440246
+      ParedesPelos_3: 1001340284
+      ParedesPelos_2: -591770612
+      ParedesPelos_0: 758779632
+      ParedesPelos_5: -966040903
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

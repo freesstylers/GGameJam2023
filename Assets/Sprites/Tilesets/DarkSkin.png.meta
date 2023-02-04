@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b7c547c0a70161f48a7efbc8c70aeb45
+guid: 190536303f99e5b4ea1c28ba329e906d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Skin_0
+      name: DarkSkin_0
       rect:
         serializedVersion: 2
         x: 0
@@ -119,14 +119,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53bec1b60440cfd4b8847de62ab61bc8
-      internalID: -446080612
+      spriteID: 03a222584209e2d4483fba60805f0222
+      internalID: 912111560
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skin_1
+      name: DarkSkin_1
       rect:
         serializedVersion: 2
         x: 32
@@ -140,14 +140,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00910c6799f42ba4d90add0dc6849ccd
-      internalID: 1038064020
+      spriteID: 7dbacf391650f9249a51a8abeee1551f
+      internalID: -1468075711
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skin_2
+      name: DarkSkin_2
       rect:
         serializedVersion: 2
         x: 0
@@ -161,14 +161,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4d68aed120dfdd47bd9a28885aae3a4
-      internalID: -39825240
+      spriteID: b06d22e69577fe7469880eb9062ac8d6
+      internalID: -656194232
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skin_3
+      name: DarkSkin_3
       rect:
         serializedVersion: 2
         x: 32
@@ -182,8 +182,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1cfa7225a311ba94da5c6f14ee866343
-      internalID: 2021595136
+      spriteID: 1e841fbcb7a03584c936c61512d2d3e8
+      internalID: 1167225147
       vertices: []
       indices: 
       edges: []
@@ -199,10 +199,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Skin_0: -446080612
-      Skin_1: 1038064020
-      Skin_3: 2021595136
-      Skin_2: -39825240
+      DarkSkin_1: -1468075711
+      DarkSkin_0: 912111560
+      DarkSkin_3: 1167225147
+      DarkSkin_2: -656194232
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
