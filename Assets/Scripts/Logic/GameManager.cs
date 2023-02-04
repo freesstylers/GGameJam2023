@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
     public Settings optionsLoader;
+    public LevelLoader levelLoader;
 
     int hairsCollected;
     int louseAccumulated;
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this);
             instance = this;
             optionsLoader = GetComponent<Settings>();
+            levelLoader = GetComponentInChildren<LevelLoader>();
         }
         else
         {
