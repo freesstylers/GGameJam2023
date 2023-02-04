@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     int hairsCollected;
     int louseAccumulated;
 
-    enum Difficulty { Bald, Normal, Hippie};
+    enum Difficulty { Bald, Normal, Hippie };
 
     Difficulty currentDifficulty = Difficulty.Normal;
     void Start()
