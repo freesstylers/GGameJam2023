@@ -155,8 +155,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pelo_: {fileID: 950955713882978930, guid: 0f50db20487e32c43af0a60b1fd3df30, type: 3}
   density_: 0.5
-  minPelos_: 20
+  minPelos_: 10
   maxPelos_: 50
+  peloDistance: 10
 --- !u!224 &819463921
 RectTransform:
   m_ObjectHideFlags: 0
@@ -174,8 +175,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 23, y: 12.8928}
+  m_AnchoredPosition: {x: 0, y: 21.8982}
+  m_SizeDelta: {x: 23, y: 56.6892}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &819463922
 BoxCollider2D:
