@@ -16,6 +16,9 @@ public class PlayerInput : MonoBehaviour
     public MeleeAttackHandler _attackArea;
     public SpawnerPiojos spawner;
 
+    bool _attacking = false;
+    bool _digging = false;
+
     Vector2 _lookDir = new Vector2(0.0F, -1.0F);
 
     Animator animator;
@@ -40,36 +43,46 @@ public class PlayerInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Rotate();
-
-        if (_rigidbody)
-            Move();
-
-
-        if (Rewired.ReInput.players.Players[0].GetButton("ButtonA"))
+        if (_digging)
         {
-            if (_attackArea)
-                Attack();
+
         }
-        if (Rewired.ReInput.players.Players[0].GetButton("ButtonB"))
-        {
-            interactableCollider.OverlapCollider(interactableContactFilter, interactableCollidedColliders);
 
-            foreach (Collider2D col in interactableCollidedColliders)
+        else
+        {
+
+            if (!_attacking)
+                Rotate();
+
+            if (_rigidbody)
+                Move();
+
+
+            if (Rewired.ReInput.players.Players[0].GetButtonDown("ButtonA") && _attackArea)
             {
-                if (col.gameObject.tag == "Hair")
+                if (!_attacking)
+                    Attack();
+            }
+            if (Rewired.ReInput.players.Players[0].GetButtonDown("ButtonB"))
+            {
+                interactableCollider.OverlapCollider(interactableContactFilter, interactableCollidedColliders);
+
+                foreach (Collider2D col in interactableCollidedColliders)
                 {
-                    Interact(col);
+                    if (col.gameObject.tag == "Hair")
+                    {
+                        Interact(col);
+                    }
                 }
             }
-        }
-        if (Rewired.ReInput.players.Players[0].GetButton("ButtonX"))
-        {
-            Debug.Log("X!");
-        }
-        if (Rewired.ReInput.players.Players[0].GetButton("ButtonY"))
-        {
-            Debug.Log("Y!");
+            if (Rewired.ReInput.players.Players[0].GetButtonDown("ButtonX"))
+            {
+                Debug.Log("X!");
+            }
+            if (Rewired.ReInput.players.Players[0].GetButtonDown("ButtonY"))
+            {
+                Debug.Log("Y!");
+            }
         }
 
         if (DEBUG_INPUT)
@@ -78,16 +91,20 @@ public class PlayerInput : MonoBehaviour
 
     void Attack()
     {
+        animator.SetTrigger("Attack");
+        _attacking = true;
+
         _attackArea.gameObject.SetActive(true);
 
         //TEMP!!!
-        //DESACTIVAR COLLIDER CUANDO ANIMACIÓN? TIEMPO?
+        //DESACTIVAR COLLIDER CUANDO ANIMACIï¿½N? TIEMPO?
         Invoke("StopAttack", AttackDuration);
     }
 
     void StopAttack()
     {
         _attackArea.gameObject.SetActive(false);
+        _attacking = false;
     }
 
     void Throw()
@@ -103,34 +120,32 @@ public class PlayerInput : MonoBehaviour
     {
         if (col != null)
         {
+            _digging = true;
+            animator.SetTrigger("Action");
+
             if (_lookDir.y > deadZone)
             {
                 pivot.localEulerAngles = new Vector3(0, 0, 0);
-                animator.Play("piojoseDigUp");
                 currentTimeToDig += Time.deltaTime;
             }
             else if (_lookDir.y <= -deadZone)
             {
                 pivot.localEulerAngles = new Vector3(0, 0, 180);
-                animator.Play("piojoseDigDown");
                 currentTimeToDig += Time.deltaTime;
             }
             else if (_lookDir.x <= -deadZone)
             {
                 pivot.localEulerAngles = new Vector3(0, 0, 90);
-                animator.Play("piojoseDigLeft");
                 currentTimeToDig += Time.deltaTime;
             }
             else if (_lookDir.x > deadZone)
             {
                 pivot.localEulerAngles = new Vector3(0, 0, 270);
-                animator.Play("piojoseDigRight");
                 currentTimeToDig += Time.deltaTime;
             }
             else
             {
                 currentTimeToDig = 0.0f;
-                animator.Play("piojoseDown");
             }
 
             if (currentTimeToDig > timeToDig)
@@ -147,7 +162,7 @@ public class PlayerInput : MonoBehaviour
                 {
                     spawner.SpawnPiojo();
                 }
-                Debug.Log("Añadidos un pelo y " + piojosCount + " piojos");
+                Debug.Log("Aï¿½adidos un pelo y " + piojosCount + " piojos");
             }
         }
     }
@@ -170,22 +185,22 @@ public class PlayerInput : MonoBehaviour
         if (_lookDir.y > deadZone)
         {
             pivot.localEulerAngles = new Vector3(0, 0, 0);
-            animator.Play("piojoseUp");
+            animator.SetInteger("Dir", (int)Look.UP);
         }
         else if (_lookDir.y < -deadZone)
         {
             pivot.localEulerAngles = new Vector3(0, 0, 180);
-            animator.Play("piojoseDown");
+            animator.SetInteger("Dir", (int)Look.DOWN);
         }
         else if (_lookDir.x < -deadZone)
         {
             pivot.localEulerAngles = new Vector3(0, 0, 90);
-            animator.Play("piojoseLeft");
+            animator.SetInteger("Dir", (int)Look.LEFT);
         }
         else if (_lookDir.x > deadZone)
         {
             pivot.localEulerAngles = new Vector3(0, 0, 270);
-            animator.Play("piojoseRight");
+            animator.SetInteger("Dir", (int)Look.RIGHT);
         }
     }
 
@@ -206,26 +221,7 @@ public class PlayerInput : MonoBehaviour
         float y = Rewired.ReInput.players.Players[0].GetAxis("YAxisMove");
         float x = Rewired.ReInput.players.Players[0].GetAxis("XAxisMove");
 
-        if (y > deadZone)
-        {
-            pivot.localEulerAngles = new Vector3(0, 0, 0);
-            
-        }
-        else if (y < -deadZone)
-        {
-            pivot.localEulerAngles = new Vector3(0, 0, 180);
-            
-        }
-        else if (x < -deadZone)
-        {
-            pivot.localEulerAngles = new Vector3(0, 0, 90);
-            
-        }
-        else if (x > deadZone)
-        {
-            pivot.localEulerAngles = new Vector3(0, 0, 270);
-            
-        }
+        animator.SetBool("Moving", !(x == 0.0f && y == 0.0f));
 
         _rigidbody.velocity = new Vector2(x * Speed, y * Speed);
     }

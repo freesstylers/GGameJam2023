@@ -405,7 +405,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &1039254193
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -985,6 +985,10 @@ PrefabInstance:
     - target: {fileID: 665906910692625296, guid: 2342d6d184f8c35449ee1a5f959e2504, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 665906910692625299, guid: 2342d6d184f8c35449ee1a5f959e2504, type: 3}
+      propertyPath: Speed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 665906910692625301, guid: 2342d6d184f8c35449ee1a5f959e2504, type: 3}
       propertyPath: m_RootOrder
