@@ -12,10 +12,15 @@ public class GameManager : MonoBehaviour
     public LevelLoader levelLoader;
     public PauseMenu pauseMenu;
 
+<<<<<<< Updated upstream
     private PlayerInput player;
 
     int hairsCollected;
     int louseAccumulated;
+=======
+    public int hairsCollected;
+    public int louseAccumulated;
+>>>>>>> Stashed changes
 
     enum Difficulty { Bald, Normal, Hippie };
 

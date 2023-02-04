@@ -300,8 +300,39 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+<<<<<<< Updated upstream
 --- !u!1101 &-7774377756726227581
 AnimatorStateTransition:
+=======
+--- !u!1102 &-3696480501616631742
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: piojoseFlag
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 4325f5406c017204a8a8019a5ab6975e, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1109 &-3680920416259438265
+AnimatorTransition:
+>>>>>>> Stashed changes
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2064,6 +2095,7 @@ AnimatorStateMachine:
     m_State: {fileID: 898936659269746928}
     m_Position: {x: -20, y: -70, z: 0}
   - serializedVersion: 1
+<<<<<<< Updated upstream
     m_State: {fileID: -4523216853471074915}
     m_Position: {x: -10, y: 320, z: 0}
   - serializedVersion: 1
@@ -2078,12 +2110,36 @@ AnimatorStateMachine:
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
+=======
+    m_State: {fileID: -9064115592293218301}
+    m_Position: {x: -380, y: 210, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -3696480501616631742}
+    m_Position: {x: -345, y: 275, z: 0}
+  m_ChildStateMachines: []
+  m_AnyStateTransitions: []
+  m_EntryTransitions:
+  - {fileID: -507360998308678147}
+  - {fileID: -3680920416259438265}
+  - {fileID: 3512559626040948273}
+  - {fileID: 5391420204506965595}
+  - {fileID: 8605503360639079542}
+  - {fileID: 3406985101982388874}
+  - {fileID: 4437897328897505335}
+  - {fileID: -982710683819692942}
+  - {fileID: 6503459049630784368}
+  - {fileID: -6349967497166284511}
+  - {fileID: -4511431137506296563}
+  - {fileID: 3477651736855579853}
+  - {fileID: 6241656033524084638}
+>>>>>>> Stashed changes
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: -260, y: -220, z: 0}
   m_EntryPosition: {x: 210, y: 500, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
+<<<<<<< Updated upstream
   m_DefaultState: {fileID: 125492050305553776}
 --- !u!1101 &4644184970734046879
 AnimatorStateTransition:
@@ -2454,6 +2510,10 @@ AnimatorStateTransition:
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1102 &6817487341149740330
+=======
+  m_DefaultState: {fileID: -3696480501616631742}
+--- !u!1102 &4668604353169288354
+>>>>>>> Stashed changes
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -2499,6 +2559,7 @@ AnimatorStateTransition:
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
+<<<<<<< Updated upstream
   serializedVersion: 3
   m_TransitionDuration: 0
   m_TransitionOffset: 0
@@ -2511,10 +2572,16 @@ AnimatorStateTransition:
 --- !u!1102 &7228333098529250084
 AnimatorState:
   serializedVersion: 6
+=======
+  serializedVersion: 1
+--- !u!1109 &6241656033524084638
+AnimatorTransition:
+>>>>>>> Stashed changes
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
   m_Name: idleLeft
   m_Speed: 1
   m_CycleOffset: 0
@@ -2545,6 +2612,18 @@ AnimatorState:
   m_TimeParameter: 
 --- !u!1101 &7368472340889990683
 AnimatorStateTransition:
+=======
+  m_Name: 
+  m_Conditions: []
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: -3696480501616631742}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 1
+--- !u!1109 &6503459049630784368
+AnimatorTransition:
+>>>>>>> Stashed changes
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}

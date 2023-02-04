@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Shop : MonoBehaviour
+public class ShopEvent : BaseEvent
 {
     [SerializeField]
     Transform container;
@@ -14,9 +13,11 @@ public class Shop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CreateItemButton(Item.ItemType.ExtraSword, Item.getItemCost(Item.ItemType.ExtraSword), 0);   
-        CreateItemButton(Item.ItemType.UpdgradeSword, Item.getItemCost(Item.ItemType.UpdgradeSword), 1);   
-        CreateItemButton(Item.ItemType.ExtraHealth, Item.getItemCost(Item.ItemType.ExtraHealth), 2);   
+        CreateItemButton(Item.ItemType.ExtraSword, Item.getItemCost(Item.ItemType.ExtraSword), 0);
+        CreateItemButton(Item.ItemType.UpdgradeSword, Item.getItemCost(Item.ItemType.UpdgradeSword), 1);
+        CreateItemButton(Item.ItemType.ExtraHealth, Item.getItemCost(Item.ItemType.ExtraHealth), 2);
+
+        base.changeText("test");
     }
 
     // Update is called once per frame
@@ -40,15 +41,18 @@ public class Shop : MonoBehaviour
     {
         //Check money
 
-        //if more than item.cost
-        //{
-        //add item to player
-        //remove from shop
-        //}
-        //else
-        //{
 
-        //}
+        if (GameManager.instance.hairsCollected > Item.getItemCost(type))
+        {
+            GameManager.instance.hairsCollected -= Item.getItemCost(type);
+
+            //Modify player stats
+        }
+        else
+        {
+            //Sound
+            //Modify color
+        }
     }
 
     public class Item
