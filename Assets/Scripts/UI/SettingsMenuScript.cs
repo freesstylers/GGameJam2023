@@ -8,16 +8,14 @@ using UnityEngine.UI;
 public class SettingsMenuScript : MonoBehaviour
 {
     //Texts
-    public Text fullScreen;
-    public Text resolution;
-    public Text musicVolume;
-    public Text sfxVolume;
-    public Text inputMode;
-    public Text language;
-    public Text FPSLimit;
-    public Text VSync;
-
-    public Settings options;
+    public TMPro.TextMeshProUGUI fullScreen;
+    public TMPro.TextMeshProUGUI resolution;
+    public TMPro.TextMeshProUGUI musicVolume;
+    public TMPro.TextMeshProUGUI sfxVolume;
+    //public TMPro.TextMeshProUGUI inputMode;
+    //public Text language;
+    public TMPro.TextMeshProUGUI FPSLimit;
+    public TMPro.TextMeshProUGUI VSync;
 
     private void Start()
     {
@@ -26,20 +24,20 @@ public class SettingsMenuScript : MonoBehaviour
 
     protected void StartText()
     {
-        FPSLimit.text = options.FPSLimits[options.FPSLimitIterator].ToString();
+        FPSLimit.text = GameManager.instance.optionsLoader.FPSLimits[GameManager.instance.optionsLoader.FPSLimitIterator].ToString();
 
-        musicVolume.text = options.currentMusicVolume.ToString();
+        musicVolume.text = GameManager.instance.optionsLoader.currentMusicVolume.ToString();
 
-        sfxVolume.text = options.currentSFX_Volume.ToString();
+        sfxVolume.text = GameManager.instance.optionsLoader.currentSFX_Volume.ToString();
 
         //updateLanguageText();
     }
 
     public void changeFullScreen()
     {
-        options.fullscreen = !options.fullscreen;
+        GameManager.instance.optionsLoader.fullscreen = !GameManager.instance.optionsLoader.fullscreen;
 
-        if (options.fullscreen)
+        if (GameManager.instance.optionsLoader.fullscreen)
         {
             //var test = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "Yes");
 
@@ -64,43 +62,43 @@ public class SettingsMenuScript : MonoBehaviour
             fullScreen.text = "No";
         }
 
-        Screen.fullScreen = options.fullscreen;
+        Screen.fullScreen = GameManager.instance.optionsLoader.fullscreen;
     }
 
     public void lessResolution()
     {
-        if (options.currentResolutionIndex > 0)
-            options.currentResolutionIndex -= 1;
+        if (GameManager.instance.optionsLoader.currentResolutionIndex > 0)
+            GameManager.instance.optionsLoader.currentResolutionIndex -= 1;
         else
-            options.currentResolutionIndex = options.resolutions.GetLength(0) - 1;
+            GameManager.instance.optionsLoader.currentResolutionIndex = GameManager.instance.optionsLoader.resolutions.GetLength(0) - 1;
 
-        SetResolution(options.currentResolutionIndex);
-        resolution.text = options.resolutionsString[options.currentResolutionIndex];
+        SetResolution(GameManager.instance.optionsLoader.currentResolutionIndex);
+        resolution.text = GameManager.instance.optionsLoader.resolutionsString[GameManager.instance.optionsLoader.currentResolutionIndex];
     }
 
     public void moreResolution()
     {
-        if (options.currentResolutionIndex < (options.resolutions.GetLength(0) - 1))
-            options.currentResolutionIndex += 1;
+        if (GameManager.instance.optionsLoader.currentResolutionIndex < (GameManager.instance.optionsLoader.resolutions.GetLength(0) - 1))
+            GameManager.instance.optionsLoader.currentResolutionIndex += 1;
         else
-            options.currentResolutionIndex = 0;
+            GameManager.instance.optionsLoader.currentResolutionIndex = 0;
 
-        SetResolution(options.currentResolutionIndex);
-        resolution.text = options.resolutionsString[options.currentResolutionIndex];
+        SetResolution(GameManager.instance.optionsLoader.currentResolutionIndex);
+        resolution.text = GameManager.instance.optionsLoader.resolutionsString[GameManager.instance.optionsLoader.currentResolutionIndex];
     }
 
     public void SetResolution(int resolutionIndex)
     {
-        Resolution resolution = options.resolutions[resolutionIndex];
+        Resolution resolution = GameManager.instance.optionsLoader.resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
     public void changeVSync()
     {
-        if (options.vSyncOn) //Pasa a false
+        if (GameManager.instance.optionsLoader.vSyncOn) //Pasa a false
         {
             QualitySettings.vSyncCount = 0; //Dont Sync
-            options.vSyncOn = false;
+            GameManager.instance.optionsLoader.vSyncOn = false;
 
             //var test = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "No");
 
@@ -116,7 +114,7 @@ public class SettingsMenuScript : MonoBehaviour
         else //Pasa a true
         {
             QualitySettings.vSyncCount = 1; //Sync a lo que vaya el monitor
-            options.vSyncOn = true;
+            GameManager.instance.optionsLoader.vSyncOn = true;
 
             //var test = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "Yes");
 
@@ -132,49 +130,49 @@ public class SettingsMenuScript : MonoBehaviour
 
     public void moreFPSLimit()
     {
-        if (options.FPSLimitIterator < options.FPSLimits.GetLength(0) - 1)
+        if (GameManager.instance.optionsLoader.FPSLimitIterator < GameManager.instance.optionsLoader.FPSLimits.GetLength(0) - 1)
         {
-            options.FPSLimitIterator += 1;
+            GameManager.instance.optionsLoader.FPSLimitIterator += 1;
         }
         else
         {
-            options.FPSLimitIterator = 0;
+            GameManager.instance.optionsLoader.FPSLimitIterator = 0;
         }
 
-        Application.targetFrameRate = options.FPSLimits[options.FPSLimitIterator];
+        Application.targetFrameRate = GameManager.instance.optionsLoader.FPSLimits[GameManager.instance.optionsLoader.FPSLimitIterator];
 
         updateFPSLimitText();
     }
 
     public void lessFPSLimit()
     {
-        if (options.FPSLimitIterator > 0)
+        if (GameManager.instance.optionsLoader.FPSLimitIterator > 0)
         {
-            options.FPSLimitIterator -= 1;
+            GameManager.instance.optionsLoader.FPSLimitIterator -= 1;
         }
         else
         {
-            options.FPSLimitIterator = options.FPSLimits.GetLength(0) - 1;
+            GameManager.instance.optionsLoader.FPSLimitIterator = GameManager.instance.optionsLoader.FPSLimits.GetLength(0) - 1;
         }
 
-        Application.targetFrameRate = options.FPSLimits[options.FPSLimitIterator];
+        Application.targetFrameRate = GameManager.instance.optionsLoader.FPSLimits[GameManager.instance.optionsLoader.FPSLimitIterator];
 
         updateFPSLimitText();
     }
 
     void updateFPSLimitText()
     {
-        FPSLimit.text = (options.FPSLimits[options.FPSLimitIterator]).ToString();
+        FPSLimit.text = (GameManager.instance.optionsLoader.FPSLimits[GameManager.instance.optionsLoader.FPSLimitIterator]).ToString();
     }
 
     public void moreSFX_Volume()
     {
-        if (options.currentSFX_Volume <= 95)
+        if (GameManager.instance.optionsLoader.currentSFX_Volume <= 95)
         {
-            options.currentSFX_Volume += 5;
+            GameManager.instance.optionsLoader.currentSFX_Volume += 5;
             //options.sfx.setVolume(options.currentSFX_Volume / 100.0f);
 
-            sfxVolume.text = options.currentSFX_Volume.ToString(); //UpdateText
+            sfxVolume.text = GameManager.instance.optionsLoader.currentSFX_Volume.ToString(); //UpdateText
         }
         else
         {
@@ -184,12 +182,12 @@ public class SettingsMenuScript : MonoBehaviour
 
     public void lessSFX_Volume()
     {
-        if (options.currentSFX_Volume >= 5)
+        if (GameManager.instance.optionsLoader.currentSFX_Volume >= 5)
         {
-            options.currentSFX_Volume -= 5;
+            GameManager.instance.optionsLoader.currentSFX_Volume -= 5;
             //options.sfx.setVolume(options.currentSFX_Volume / 100.0f);
 
-            sfxVolume.text = options.currentSFX_Volume.ToString(); //UpdateText
+            sfxVolume.text = GameManager.instance.optionsLoader.currentSFX_Volume.ToString(); //UpdateText
         }
         else
         {
@@ -199,12 +197,12 @@ public class SettingsMenuScript : MonoBehaviour
 
     public void moreMusicVolume()
     {
-        if (options.currentMusicVolume <= 95)
+        if (GameManager.instance.optionsLoader.currentMusicVolume <= 95)
         {
-            options.currentMusicVolume += 5;
+            GameManager.instance.optionsLoader.currentMusicVolume += 5;
             //options.music.setVolume(options.currentMusicVolume / 100.0f);
 
-            musicVolume.text = options.currentMusicVolume.ToString(); //UpdateText
+            musicVolume.text = GameManager.instance.optionsLoader.currentMusicVolume.ToString(); //UpdateText
         }
         else
         {
@@ -214,12 +212,12 @@ public class SettingsMenuScript : MonoBehaviour
 
     public void lessMusicVolume()
     {
-        if (options.currentMusicVolume >= 5)
+        if (GameManager.instance.optionsLoader.currentMusicVolume >= 5)
         {
-            options.currentMusicVolume -= 5;
+            GameManager.instance.optionsLoader.currentMusicVolume -= 5;
             //options.music.setVolume(options.currentMusicVolume / 100.0f);
 
-            musicVolume.text = options.currentMusicVolume.ToString(); //UpdateText
+            musicVolume.text = GameManager.instance.optionsLoader.currentMusicVolume.ToString(); //UpdateText
         }
         else
         {

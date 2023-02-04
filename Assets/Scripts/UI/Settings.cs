@@ -27,7 +27,7 @@ public class Settings : MonoBehaviour
     public int languageMax; //se asigna en Start
 
     // Start is called before the first frame update
-    public void Init()
+    public void Awake()
     {
         resolutionsString = new List<string>();
         resolutions = Screen.resolutions;

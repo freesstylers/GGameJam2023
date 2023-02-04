@@ -8,23 +8,21 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
     public Settings optionsLoader;
-    
+
+    int hairsCollected;
+    int louseAccumulated;
+
     void Start()
     {
         if (instance == null)
         {
             DontDestroyOnLoad(this);
             instance = this;
+            optionsLoader = GetComponent<Settings>();
         }
         else
         {
             Destroy(this);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

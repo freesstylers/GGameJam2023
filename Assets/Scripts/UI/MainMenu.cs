@@ -5,6 +5,15 @@ using Rewired;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField]
+    GameObject containerGameObject;
+    [SerializeField]
+    GameObject settingsGameObject;
+    [SerializeField]
+    GameObject creditsGameObject;
+
+    bool settingsOpened = false;
+    bool creditsOpened = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,10 +41,38 @@ public class MainMenu : MonoBehaviour
 
     public void Settings()
     {
+        settingsOpened = !settingsOpened;
+
+        if (settingsOpened)
+        {
+            containerGameObject.SetActive(false);
+            settingsGameObject.SetActive(true);
+        }
+        else
+        {
+            containerGameObject.SetActive(true);
+            settingsGameObject.SetActive(false);
+        }
     }
 
     public void HighScores()
     {
 
+    }
+
+    public void Credits()
+    {
+        creditsOpened = !creditsOpened;
+
+        if (creditsOpened)
+        {
+            containerGameObject.SetActive(false);
+            creditsGameObject.SetActive(true);
+        }
+        else
+        {
+            containerGameObject.SetActive(true);
+            creditsGameObject.SetActive(false);
+        }
     }
 }

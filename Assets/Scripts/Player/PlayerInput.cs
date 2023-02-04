@@ -20,6 +20,13 @@ public class PlayerInput : MonoBehaviour
     Animator animator;
     Transform pivot;
 
+    [SerializeField]
+    Collider2D interactableCollider;
+    [SerializeField]
+    ContactFilter2D interactableContactFilter;
+    [SerializeField]
+    List<Collider2D> interactableCollidedColliders;
+
     public float deadZone = 0.25f;
     // Start is called before the first frame update
     void Awake()
@@ -45,7 +52,15 @@ public class PlayerInput : MonoBehaviour
         }
         if (Rewired.ReInput.players.Players[0].GetButton("ButtonB"))
         {
-            Debug.Log("B!");
+            interactableCollider.OverlapCollider(interactableContactFilter, interactableCollidedColliders);
+
+            foreach (Collider2D col in interactableCollidedColliders)
+            {
+                if (col.gameObject.tag == "Hair")
+                {
+                    Debug.Log("Pelo pelo pelo");
+                }
+            }
         }
         if (Rewired.ReInput.players.Players[0].GetButton("ButtonX"))
         {
@@ -81,7 +96,6 @@ public class PlayerInput : MonoBehaviour
 
     void Interact()
     {
-
     }
 
     void Rotate()
@@ -164,10 +178,7 @@ public class PlayerInput : MonoBehaviour
 
     private void DebugInputOutput()
     {
-        if (Rewired.ReInput.players.Players[0].GetButton("ButtonA"))
-        {
-            Debug.Log("A!");
-        }
+        
         if (Rewired.ReInput.players.Players[0].GetButton("ButtonB"))
         {
             Debug.Log("B!");
