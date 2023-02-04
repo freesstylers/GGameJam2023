@@ -264,6 +264,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 501418665}
   offset: {x: 0, y: 0, z: -1}
+  upperLimit: 0
+  lowerLimit: 0
 --- !u!114 &533041697 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3232091328953790459, guid: e1393f3cbb616254383d873227570c6f, type: 3}
@@ -308,7 +310,7 @@ Animator:
   m_GameObject: {fileID: 1036121926}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: bd580b61dc0716243ad7420f65bfb15f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4bc0d3c67e26a8041b431e1b9567e84c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
