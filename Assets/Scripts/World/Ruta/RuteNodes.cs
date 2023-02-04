@@ -9,7 +9,7 @@ public class RuteNodes : MonoBehaviour
     public int id_;
     public GameObject camino_;
 
-    //public GameEvent gameEvent_;
+    public BaseEvent gameEvent_ = null;
 
     private RuteNodes[] nextNodes = new RuteNodes[3];
     private RuteNodes[] prevNodes = new RuteNodes[3];
@@ -40,6 +40,13 @@ public class RuteNodes : MonoBehaviour
     {
         prevNodes = nodes;
     }
+
+    public void SetEvent(BaseEvent b)
+    {
+        if(gameEvent_ != null)
+            gameEvent_ = b;
+    }
+
     #endregion
 
     public bool CanTravel(RuteNodes node)

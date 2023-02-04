@@ -14,7 +14,9 @@ public class WorldGeneration : MonoBehaviour
     public RuteNodes ini_;
     public RuteNodes fin_;
 
-    public List<GameObject> eventos_;
+    public List<BaseEvent> eventos_;
+    public List<int> eventosAp_;
+    public GameObject eventoTienda_;
 
     private int[][] logicMatrix;
     private List<List<RuteNodes>> gm = new List<List<RuteNodes>>();
@@ -23,6 +25,7 @@ public class WorldGeneration : MonoBehaviour
     {
         gm.ForEach(x => x = new List<RuteNodes>());
         CreateMap();
+       
     }
 
     private void InitMatrix()
@@ -255,6 +258,37 @@ public class WorldGeneration : MonoBehaviour
                 fin_.SetPrevNode(gm[hNiveles_ - 1][i], f);
                 f++;
             }
+        }
+    }
+
+    #endregion
+
+    #region EVENTS
+    public BaseEvent GetRandomEvent()
+    {
+        bool isOk = false;
+        BaseEvent e = null;
+
+        do
+        {
+            int r = Random.Range(0, eventos_.Count);
+            if (eventosAp_[r] > 0)
+            {
+                e = eventos_[r];
+                eventosAp_[r]--;
+                isOk = true;
+            }
+
+        } while (!isOk);
+
+        return e;
+    }
+
+    private void SetTiendas(int n)
+    {
+        for (int i = 0; i < n; i++)
+        {
+
         }
     }
 

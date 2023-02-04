@@ -12,15 +12,9 @@ public class GameManager : MonoBehaviour
     public LevelLoader levelLoader;
     public PauseMenu pauseMenu;
 
-<<<<<<< Updated upstream
     private PlayerInput player;
-
-    int hairsCollected;
-    int louseAccumulated;
-=======
     public int hairsCollected;
     public int louseAccumulated;
->>>>>>> Stashed changes
 
     enum Difficulty { Bald, Normal, Hippie };
 
@@ -90,7 +84,7 @@ public class GameManager : MonoBehaviour
 
     public void EndLevel()
     {
-        player.EndLevel();
+        //player.EndLevel();
     }
 
     private int biome_ = 0;
