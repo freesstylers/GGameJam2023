@@ -154,6 +154,7 @@ MonoBehaviour:
     maxNormalAngle: 0
   interactableCollidedColliders: []
   deadZone: 0.25
+  timeToDig: 1.5
 --- !u!50 &4595676158233825456
 Rigidbody2D:
   serializedVersion: 4

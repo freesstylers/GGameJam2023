@@ -397,14 +397,13 @@ GameObject:
   - component: {fileID: 1039254194}
   - component: {fileID: 1039254193}
   - component: {fileID: 1039254196}
-  - component: {fileID: 1039254197}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Hair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &1039254193
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -496,21 +495,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.43, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1039254197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1039254191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34bd5774c31d35043ad51de4b0554405, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xRange: 2
-  yRange: 2
-  timeToChange: 5
 --- !u!1 &1158332797
 GameObject:
   m_ObjectHideFlags: 0
@@ -999,14 +983,6 @@ PrefabInstance:
     - target: {fileID: 665906910692625296, guid: 2342d6d184f8c35449ee1a5f959e2504, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 665906910692625296, guid: 2342d6d184f8c35449ee1a5f959e2504, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 665906910692625299, guid: 2342d6d184f8c35449ee1a5f959e2504, type: 3}
-      propertyPath: interactableContactFilter.layerMask.m_Bits
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 665906910692625301, guid: 2342d6d184f8c35449ee1a5f959e2504, type: 3}
       propertyPath: m_RootOrder

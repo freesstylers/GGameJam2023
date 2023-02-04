@@ -15,7 +15,7 @@ public class PlayerInput : MonoBehaviour
     public Rigidbody2D _rigidbody;
     public MeleeAttackHandler _attackArea;
 
-    Vector2 _lookDir;
+    Vector2 _lookDir = new Vector2(0.0F, -1.0F);
 
     Animator animator;
     Transform pivot;
@@ -58,7 +58,7 @@ public class PlayerInput : MonoBehaviour
             {
                 if (col.gameObject.tag == "Hair")
                 {
-                    Debug.Log("Pelo pelo pelo");
+                    Interact(col);
                 }
             }
         }
@@ -94,8 +94,54 @@ public class PlayerInput : MonoBehaviour
 
     }
 
-    void Interact()
+    [SerializeField]
+    float timeToDig = 1.5f;
+
+    float currentTimeToDig = 0.0f;
+    void Interact(Collider2D col)
     {
+        if (col != null)
+        {
+            if (_lookDir.y > deadZone)
+            {
+                pivot.localEulerAngles = new Vector3(0, 0, 0);
+                animator.Play("piojoseDigUp");
+                currentTimeToDig += Time.deltaTime;
+            }
+            else if (_lookDir.y <= -deadZone)
+            {
+                pivot.localEulerAngles = new Vector3(0, 0, 180);
+                animator.Play("piojoseDigDown");
+                currentTimeToDig += Time.deltaTime;
+            }
+            else if (_lookDir.x <= -deadZone)
+            {
+                pivot.localEulerAngles = new Vector3(0, 0, 90);
+                animator.Play("piojoseDigLeft");
+                currentTimeToDig += Time.deltaTime;
+            }
+            else if (_lookDir.x > deadZone)
+            {
+                pivot.localEulerAngles = new Vector3(0, 0, 270);
+                animator.Play("piojoseDigRight");
+                currentTimeToDig += Time.deltaTime;
+            }
+            else
+            {
+                currentTimeToDig = 0.0f;
+                animator.Play("piojoseDown");
+            }
+
+            if (currentTimeToDig > timeToDig)
+            {
+                Debug.Log("peloArrancado");
+                animator.Play("piojoseDown");
+                col.gameObject.GetComponent<Animator>().Play("SacarPelo");
+                Destroy(col.gameObject, 1f);
+                col = null;
+                currentTimeToDig = 0.0f;
+            }
+        }
     }
 
     void Rotate()
@@ -155,22 +201,22 @@ public class PlayerInput : MonoBehaviour
         if (y > deadZone)
         {
             pivot.localEulerAngles = new Vector3(0, 0, 0);
-            animator.Play("piojoseUp");
+            
         }
         else if (y < -deadZone)
         {
             pivot.localEulerAngles = new Vector3(0, 0, 180);
-            animator.Play("piojoseDown");
+            
         }
         else if (x < -deadZone)
         {
             pivot.localEulerAngles = new Vector3(0, 0, 90);
-            animator.Play("piojoseLeft");
+            
         }
         else if (x > deadZone)
         {
             pivot.localEulerAngles = new Vector3(0, 0, 270);
-            animator.Play("piojoseRight");
+            
         }
 
         _rigidbody.velocity = new Vector2(x * Speed, y * Speed);
