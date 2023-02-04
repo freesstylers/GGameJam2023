@@ -54,4 +54,9 @@ public class WanderAround : MonoBehaviour
     {
         time = Random.Range(minTime, maxTime);
     }
+
+    public void SetObjectToWander(GameObject obj)
+    {
+        objectToWanderAround = obj;
+    }
 }

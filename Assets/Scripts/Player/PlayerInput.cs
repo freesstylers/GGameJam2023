@@ -14,6 +14,7 @@ public class PlayerInput : MonoBehaviour
 
     public Rigidbody2D _rigidbody;
     public MeleeAttackHandler _attackArea;
+    public SpawnerPiojos spawner;
 
     Vector2 _lookDir = new Vector2(0.0F, -1.0F);
 
@@ -134,12 +135,19 @@ public class PlayerInput : MonoBehaviour
 
             if (currentTimeToDig > timeToDig)
             {
-                Debug.Log("peloArrancado");
                 animator.Play("piojoseDown");
-                col.gameObject.GetComponent<Animator>().Play("SacarPelo");
+                //col.gameObject.GetComponent<Animator>().Play("SacarPelo");
+                int piojosCount = col.gameObject.GetComponent<Pelo>().GetPiojos();
                 Destroy(col.gameObject, 1f);
                 col = null;
                 currentTimeToDig = 0.0f;
+
+                GameManager.instance.AddHair(1, piojosCount);
+                for(int i = 0; i < piojosCount; i++)
+                {
+                    spawner.SpawnPiojo();
+                }
+                Debug.Log("Añadidos un pelo y " + piojosCount + " piojos");
             }
         }
     }

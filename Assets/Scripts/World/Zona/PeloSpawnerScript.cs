@@ -66,6 +66,9 @@ public class PeloSpawnerScript : MonoBehaviour
             thisPelo.transform.position = thisPeloPos;
             pelosPositionsList.Add(thisPelo.transform);
 
+            int piojosCount = Random.Range(0, 4);
+            thisPelo.GetComponent<Pelo>().SetPiojos(piojosCount);
+
             thisPelo.transform.parent = null;
         }
 

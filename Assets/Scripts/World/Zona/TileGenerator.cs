@@ -50,7 +50,9 @@ public class TileGenerator : MonoBehaviour
         {
             for (int j = (int)(map_.position.y - height/2); j < (map_.position.y + height / 2); j++)
             {
-                tileMap_.SetTile(new Vector3Int(i, j, 0), tilesByBiome[biomaType][Random.Range(0, tilesByBiome[biomaType].Length)]);
+                int randomTile = Random.Range(0, tilesByBiome[biomaType].Length + 6);
+                if (randomTile > 3) randomTile = 3;
+                tileMap_.SetTile(new Vector3Int(i, j, 0), tilesByBiome[biomaType][randomTile]);
             }
         }
     }
