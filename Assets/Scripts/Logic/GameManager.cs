@@ -73,5 +73,11 @@ public class GameManager : MonoBehaviour
         return biome_;
     }
 
+    public void AddHair(int cantHair, int cantPiojos)
+    {
+        hairsCollected += cantHair;
+        louseAccumulated += cantPiojos;
+    }
+
     private int biome_ = 0;
 }
