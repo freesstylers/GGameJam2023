@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public LevelLoader levelLoader;
     public PauseMenu pauseMenu;
 
+    private PlayerInput player;
+
     int hairsCollected;
     int louseAccumulated;
 
@@ -31,6 +33,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this);
         }
+
+        player = GameObject.Find("Player").GetComponent<PlayerInput>();
     }
 
     private void Update()
@@ -77,6 +81,11 @@ public class GameManager : MonoBehaviour
     {
         hairsCollected += cantHair;
         louseAccumulated += cantPiojos;
+    }
+
+    public void EndLevel()
+    {
+        player.EndLevel();
     }
 
     private int biome_ = 0;

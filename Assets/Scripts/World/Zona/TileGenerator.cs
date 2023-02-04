@@ -19,6 +19,7 @@ public class TileGenerator : MonoBehaviour
     public ChampuController champu_;
     public CameraFollowPlayer camera_;
     public PlayerInput player_;
+    public FinishZone finish_;
 
     private void Start()
     {
@@ -37,6 +38,8 @@ public class TileGenerator : MonoBehaviour
 
         camera_.SetStartingPosition(map_.position.y - map_.rect.height / 2 + map_.rect.height / 10);
         player_.SetStartingPosition(map_.position.y - map_.rect.height / 2 + map_.rect.height / 10);
+
+        finish_.SetPosition(map_.position.y + map_.rect.height / 2 - map_.rect.height / 10);
 
         GenerateTiles();
     }

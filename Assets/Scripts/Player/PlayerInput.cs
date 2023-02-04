@@ -28,6 +28,8 @@ public class PlayerInput : MonoBehaviour
     [SerializeField]
     List<Collider2D> interactableCollidedColliders;
 
+    private bool canMove = true;
+
     public float deadZone = 0.25f;
     // Start is called before the first frame update
     void Awake()
@@ -40,40 +42,43 @@ public class PlayerInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Rotate();
-
-        if (_rigidbody)
-            Move();
-
-
-        if (Rewired.ReInput.players.Players[0].GetButton("ButtonA"))
+        if (canMove)
         {
-            if (_attackArea)
-                Attack();
-        }
-        if (Rewired.ReInput.players.Players[0].GetButton("ButtonB"))
-        {
-            interactableCollider.OverlapCollider(interactableContactFilter, interactableCollidedColliders);
+            Rotate();
 
-            foreach (Collider2D col in interactableCollidedColliders)
+            if (_rigidbody)
+                Move();
+
+
+            if (Rewired.ReInput.players.Players[0].GetButton("ButtonA"))
             {
-                if (col.gameObject.tag == "Hair")
+                if (_attackArea)
+                    Attack();
+            }
+            if (Rewired.ReInput.players.Players[0].GetButton("ButtonB"))
+            {
+                interactableCollider.OverlapCollider(interactableContactFilter, interactableCollidedColliders);
+
+                foreach (Collider2D col in interactableCollidedColliders)
                 {
-                    Interact(col);
+                    if (col.gameObject.tag == "Hair")
+                    {
+                        Interact(col);
+                    }
                 }
             }
-        }
-        if (Rewired.ReInput.players.Players[0].GetButton("ButtonX"))
-        {
-            Debug.Log("X!");
-        }
-        if (Rewired.ReInput.players.Players[0].GetButton("ButtonY"))
-        {
-            Debug.Log("Y!");
-        }
+            if (Rewired.ReInput.players.Players[0].GetButton("ButtonX"))
+            {
+                Debug.Log("X!");
+            }
+            if (Rewired.ReInput.players.Players[0].GetButton("ButtonY"))
+            {
+                Debug.Log("Y!");
+            }
 
-        if (DEBUG_INPUT)
-            DebugInputOutput();        
+            if (DEBUG_INPUT)
+                DebugInputOutput();
+        }
     }
 
     void Attack()
@@ -264,5 +269,10 @@ public class PlayerInput : MonoBehaviour
     public void SetStartingPosition(float y)
     {
         transform.position = new Vector3(transform.position.x, y, 0);
+    }
+
+    public void EndLevel()
+    {
+        canMove = false;
     }
 }
