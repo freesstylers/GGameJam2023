@@ -20,7 +20,7 @@ public class PeloSpawnerScript : MonoBehaviour
     public int paredWidth_;
     public int paredHorizontalDistanceVariance_;
     public float paredVariance_;
-
+    private int pelosCount;
 
     void Start()
     {
@@ -77,6 +77,8 @@ public class PeloSpawnerScript : MonoBehaviour
             aux.parent = tr_;
             aux.GetComponent<SpriteRenderer>().sortingOrder = pelosPositionsList.Count - i;
         }
+
+        pelosCount = pelosPositionsList.Count;
     }
 
     private void GenerarParedes(RectTransform tr_)
@@ -126,12 +128,12 @@ public class PeloSpawnerScript : MonoBehaviour
             tileMap_.SetTile(new Vector3Int((int)thisParedPosIzq.x, (int)(iniPosY + i-1), 0), paredesTile_[paredIzqTile]);
             tileMap_.SetTile(new Vector3Int((int)thisParedPosDer.x, (int)(iniPosY + i-1), 0), paredesTile_[paredDerTile]);
 
-            for(int ini = (int)(tr_.position.x - tr_.rect.width / 2); ini < thisParedPosIzq.x+1; ini++)
+            for(int ini = (int)(tr_.position.x - tr_.rect.width); ini < thisParedPosIzq.x+1; ini++)
             {
                 tileMap_.SetTile(new Vector3Int(ini, (int)(iniPosY + i), 0), paredesTile_[0]);
             }
 
-            for (int ini = (int)thisParedPosDer.x-1; ini < tr_.position.x + tr_.rect.width / 2.0f; ini++)
+            for (int ini = (int)thisParedPosDer.x-1; ini < tr_.position.x + tr_.rect.width; ini++)
             {
                 tileMap_.SetTile(new Vector3Int(ini+1, (int)(iniPosY + i), 0), paredesTile_[0]);
             }
@@ -152,6 +154,7 @@ public class PeloSpawnerScript : MonoBehaviour
             lastXDer = thisParedPosDer.x;
         }
 
+        tileMap_.GetComponent<TilemapRenderer>().sortingOrder = pelosCount + 1;
     }
 
 }

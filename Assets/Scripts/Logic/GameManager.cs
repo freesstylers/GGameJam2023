@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -51,4 +52,17 @@ public class GameManager : MonoBehaviour
         else
             currentDifficulty--;
     }
+
+    public void GoToPlayScene(int biome)
+    {
+        biome_ = biome;
+        SceneManager.LoadScene("ZonaScene");   
+    }
+
+    public int GetBiome()
+    {
+        return biome_;
+    }
+
+    private int biome_ = 0;
 }

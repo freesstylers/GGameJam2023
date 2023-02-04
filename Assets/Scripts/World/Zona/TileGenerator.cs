@@ -17,6 +17,7 @@ public class TileGenerator : MonoBehaviour
 
     private void Start()
     {
+        biomaType = GameManager.instance.GetBiome();
         tileMap_ = GetComponent<Tilemap>();
         tilesByBiome = new Tile[4][];
         tilesByBiome[0] = tilesDefault_;
