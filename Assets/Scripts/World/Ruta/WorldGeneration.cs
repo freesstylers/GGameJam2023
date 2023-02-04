@@ -7,7 +7,8 @@ public class WorldGeneration : MonoBehaviour
     public int hNiveles_;
     public int vNiveles_;
     public float desfase_;
-    [Range(1, 5)] public int maxNodos_;
+    public Vector2 cuadrado_;
+    [Range(1, 3)] public int maxNodos_;
 
     public RuteNodes prefab_; 
     public RuteNodes ini_;
@@ -66,10 +67,10 @@ public class WorldGeneration : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space))
         {
             CreateMap();
-            gm.ForEach(x => x.ForEach(x => Destroy(x)));
+            /*gm.ForEach(x => x.ForEach(x => Destroy(x)));
             gm.ForEach(x => x.Clear());
             gm.Clear();
-            gm = CreateLevel();
+            gm = CreateLevel();*/
         }
 #endif
     }
@@ -100,8 +101,12 @@ public class WorldGeneration : MonoBehaviour
                 if (logicMatrix[i][j] == 1)
                 {
                     float x = Random.Range(-desfase_, desfase_) + j;
+                    //x = (x - (hNiveles_ / 2f));
                     float y = Random.Range(-desfase_, desfase_) + i;
-                    g.Add(Instantiate(prefab_.gameObject, new Vector2(x, y), Quaternion.identity).GetComponent<RuteNodes>());
+                    //y = (y - (vNiveles_ / 2f));
+                    RuteNodes obj = Instantiate(prefab_.gameObject, gameObject.transform).GetComponent<RuteNodes>();
+                    obj.transform.position = new Vector2(x, y);
+                    g.Add(obj);
                 }
                 else
                     g.Add(null);
@@ -109,6 +114,11 @@ public class WorldGeneration : MonoBehaviour
             gg.Add(g);
         }
         return gg;
+    }
+
+    public void SpawnMap()
+    {
+        gm.ForEach(x => x.ForEach(x => Instantiate(x)));
     }
 
     private bool IsLLevelOk(int level)
