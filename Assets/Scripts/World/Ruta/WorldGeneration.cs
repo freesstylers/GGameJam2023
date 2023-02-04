@@ -4,79 +4,249 @@ using UnityEngine;
 
 public class WorldGeneration : MonoBehaviour
 {
-    public Vector2 cuadrado_;
     public int hNiveles_;
     public int vNiveles_;
-    public int maxDistance_;
-    public float minDistance_;
+    public float desfase_;
     [Range(1, 5)] public int maxNodos_;
 
-    public GameObject prefab_; 
-    //public GameObject ini_;
-    public List<GameObject> eventos_;
-    //public GameObject fin_;
+    public RuteNodes prefab_; 
+    public RuteNodes ini_;
+    public RuteNodes fin_;
 
-    private List<GameObject> gm = new List<GameObject>();
+    public List<GameObject> eventos_;
+
+    private int[][] logicMatrix;
+    private List<List<RuteNodes>> gm = new List<List<RuteNodes>>();
 
     public void Start()
     {
-        float ini = 0f, fin = 5f;
-        float m = 5f;
+        gm.ForEach(x => x = new List<RuteNodes>());
+        CreateMap();
+    }
 
-        //for (int i = 1; i <= 5; i++)
-        //{
-            CreateLevel(ini, fin);
-            //Crear nodos, devolver esos nodos y añadir los nuevos. Luego quitar los que no cumplan lo de la distancia
-            //ini += m; fin += m;
-        //}
+    private void InitMatrix()
+    {
+        //Init
+        logicMatrix = new int[vNiveles_][];
+        for (int i = 0; i < vNiveles_; i++)
+        {
+            logicMatrix[i] = new int[hNiveles_];
+        }
+        for (int i = 0; i < hNiveles_; i++)
+        {
+            logicMatrix[0][i] = 1;
+        }
+
+    }
+
+    private void FillLogicMatrix(int level)
+    {
+        do
+        {
+            ResetLevel(level);
+            for (int i = 0; i < maxNodos_; i++)
+            {
+                int rnd = Random.Range(0, hNiveles_);
+                logicMatrix[level][rnd] = 1;
+            }
+        } while (!IsLevelOk(level) || !IsLLevelOk(level));
+    }
+
+    private void ResetLevel(int level)
+    {
+        for (int i = 0; i < hNiveles_; i++)
+        {
+            logicMatrix[level][i] = 0;
+        }
     }
 
     public void Update()
     {
+#if DEBUG
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            gm.ForEach(x => Destroy(x));
+            CreateMap();
+            gm.ForEach(x => x.ForEach(x => Destroy(x)));
+            gm.ForEach(x => x.Clear());
             gm.Clear();
-            gm = CreateLevel(0f, 5f);
+            gm = CreateLevel();
         }
+#endif
     }
 
     public void CreateMap()
     {
-
-    }
-
-    private List<GameObject> CreateLevel(float minY, float maxY)
-    {
-        int r = Random.Range(1, maxNodos_);
-        float randomX = 0, lastRY = 0;
-        List<GameObject> g = new List<GameObject>();
-        //Creacion de nodos
-        for (int i = 0; i < r; i++)
+        InitMatrix();
+        for (int i = 0; i < vNiveles_; i++)
         {
-            float randomY = Random.Range(minY, maxY);
-            randomX = GetRandomWithMinDist(-cuadrado_.x, cuadrado_.x, randomY, randomX, lastRY);
-            lastRY = randomY;
-
-            g.Add(Instantiate(prefab_, new Vector2(randomX, randomY), Quaternion.identity));
-
+            FillLogicMatrix(i);
         }
 
-        return g;
+        gm.ForEach(x => x.ForEach(x => Destroy(x)));
+        gm.ForEach(x => x.Clear());
+        gm.Clear();
+        gm = CreateLevel();
+        LinkNodes();
     }
 
-    private float GetRandomWithMinDist(float min, float max, float randomY, float lastRX, float lastRY)
+    private List<List<RuteNodes>> CreateLevel()
     {
-        float r = Random.Range(min, max);
-        Vector2 other = new Vector2(lastRX, lastRY);
-        Vector2 thisNode = new Vector2(r, randomY);
+        List<List<RuteNodes>> gg = new List<List<RuteNodes>>();
+        for (int i = 0; i < vNiveles_; i++)
+        {
+            List<RuteNodes> g = new List<RuteNodes>();
+            for (int j = 0; j < hNiveles_; j++)
+            {
+                if (logicMatrix[i][j] == 1)
+                {
+                    float x = Random.Range(-desfase_, desfase_) + j;
+                    float y = Random.Range(-desfase_, desfase_) + i;
+                    g.Add(Instantiate(prefab_.gameObject, new Vector2(x, y), Quaternion.identity).GetComponent<RuteNodes>());
+                }
+                else
+                    g.Add(null);
+            }
+            gg.Add(g);
+        }
+        return gg;
+    }
 
-        while (Vector2.Distance(other, thisNode) < minDistance_)
-        {            
-            r = Random.Range(min, max);
-            thisNode = new Vector2(r, randomY);
+    private bool IsLLevelOk(int level)
+    {
+        level -= 1;
+        if (level < 0 || level >= hNiveles_ - 1)
+            return true;
+
+        bool isOk = true;
+        for (int i = 0; i < hNiveles_; i++)
+        {
+            bool[] ok = { false, false, false };
+            if (logicMatrix[level][i] != 1)
+                continue;
+
+            ok[1] = logicMatrix[level + 1][i] == 1;
+            if (i > 0)
+                ok[0] = logicMatrix[level + 1][i - 1] == 1;
+            if (i < hNiveles_-1)
+                ok[2] = logicMatrix[level + 1][i + 1] == 1;
+
+            isOk = isOk && (ok[0] || ok[1] || ok[2]);
         }
 
-        return r;
+        return isOk;
     }
+
+    private bool IsLevelOk(int level)
+    {
+        if (level <= 0)
+            return true;
+
+        bool isOk = true;
+        for (int i = 0; i < hNiveles_; i++)
+        {
+            bool[] ok = { false, false, false };
+            if (logicMatrix[level][i] != 1)
+                continue;
+
+            ok[1] = logicMatrix[level - 1][i] == 1;
+            if (i > 0)
+                ok[0] = logicMatrix[level - 1][i - 1] == 1;
+            if (i < hNiveles_ - 1)
+                ok[2] = logicMatrix[level - 1][i + 1] == 1;
+
+            isOk = isOk && (ok[0] || ok[1] || ok[2]);
+        }
+
+        return isOk;
+    }
+
+    //Link todos los nodos entre ellos
+    #region LINK
+    private void LinkNodes()
+    {
+        for (int i = 0; i < vNiveles_; i++)
+        {
+            for (int j = 0; j < hNiveles_; j++)
+            {
+                if(logicMatrix[i][j] == 1)
+                {
+                    LinkNextNodes(j, i);
+                    LinkPrevNodes(j, i);
+                }
+            }
+        }
+        LinkIniFin();
+    }
+    private void LinkNextNodes(int x, int y)
+    {
+        try
+        {
+            if (y + 1 == vNiveles_)
+            {
+                gm[y][x].SetNextNode(fin_);
+                return;
+            }
+
+            if (logicMatrix[y + 1][x] == 1)
+                gm[y][x].SetNextNode(gm[y + 1][x], 1);
+            if (x > 0 && logicMatrix[y + 1][x - 1] == 1)
+                gm[y][x].SetNextNode(gm[y + 1][x - 1], 0);
+            if (x < hNiveles_ - 1 && logicMatrix[y + 1][x + 1] == 1)
+                gm[y][x].SetNextNode(gm[y + 1][x + 1], 2);
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log("NextNodes: ");
+            Debug.Log(y + "-" + x);
+            throw e;
+        }
+        
+    }
+
+    private void LinkPrevNodes(int x, int y)
+    {
+        try
+        {
+            if (y - 1 < 0)
+            {
+                gm[y][x].SetPrevNode(ini_);
+                return;
+            }
+            if (logicMatrix[y - 1][x] == 1)
+                gm[y][x].SetPrevNode(gm[y - 1][x], 1);
+            if (x > 0 && logicMatrix[y - 1][x - 1] == 1)
+                gm[y][x].SetPrevNode(gm[y - 1][x - 1], 0);
+            if (x < hNiveles_ - 1 && logicMatrix[y - 1][x + 1] == 1)
+                gm[y][x].SetPrevNode(gm[y - 1][x + 1], 2);
+
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log("PrevNodes: ");
+            Debug.Log(y + "-" + x);
+            throw e;
+        }
+    }
+
+    //No me gusta esto, ver otra forma porfa =(
+    private void LinkIniFin()
+    {
+        int f = 0, n = 0;
+        for (int i = 0; i < hNiveles_; i++)
+        {            
+            if (logicMatrix[0][i] == 1)
+            {
+                ini_.SetNextNode(gm[0][i], n);
+                n++;
+            }
+
+            if (logicMatrix[vNiveles_ - 1][i] == 1)
+            {
+                fin_.SetPrevNode(gm[vNiveles_ - 1][i], f);
+                f++;
+            }
+        }
+    }
+
+    #endregion
 }
