@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class TileGenerator : MonoBehaviour
 {
+    //Arrays de los tiles de cada "bioma"
     private Tile[][] tilesByBiome;
     public Tile[] tilesDefault_;
     public Tile[] tilesDermatitis_;
@@ -15,6 +16,10 @@ public class TileGenerator : MonoBehaviour
 
     public RectTransform map_;
 
+    public ChampuController champu_;
+    public CameraFollowPlayer camera_;
+    public PlayerInput player_;
+
     private void Start()
     {
         biomaType = GameManager.instance.GetBiome();
@@ -24,9 +29,19 @@ public class TileGenerator : MonoBehaviour
         tilesByBiome[1] = tilesDermatitis_;
         tilesByBiome[2] = tilesCaspa_;
         tilesByBiome[3] = tilesDark_;
+
+        champu_.SetMapSize(map_.rect.height);
+        champu_.SetStartingPos(new Vector2(0, map_.position.y - map_.rect.height / 2 - 5));
+
+        camera_.SetLimits(map_.position.y + map_.rect.height / 2 - map_.rect.height / 10, map_.position.y - map_.rect.height / 2+ map_.rect.height / 10);
+
+        camera_.SetStartingPosition(map_.position.y - map_.rect.height / 2 + map_.rect.height / 10);
+        player_.SetStartingPosition(map_.position.y - map_.rect.height / 2 + map_.rect.height / 10);
+
         GenerateTiles();
     }
 
+    //Llenamos el tilemap con los tiles de piel caminables
     public void GenerateTiles()
     {
         float width = map_.rect.width+10;

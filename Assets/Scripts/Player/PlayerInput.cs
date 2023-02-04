@@ -206,4 +206,9 @@ public class PlayerInput : MonoBehaviour
             Debug.Log("Axis X = " + x);
         }
     }
+
+    public void SetStartingPosition(float y)
+    {
+        transform.position = new Vector3(transform.position.x, y, 0);
+    }
 }
