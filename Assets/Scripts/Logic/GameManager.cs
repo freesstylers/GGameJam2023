@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
     int hairsCollected;
     int louseAccumulated;
 
+    enum Difficulty { Bald, Normal, Hippie};
+
+    Difficulty currentDifficulty = Difficulty.Normal;
     void Start()
     {
         if (instance == null)
@@ -24,5 +27,26 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this);
         }
+    }
+
+    void changeCurrentDifficulty(Difficulty difficulty)
+    {
+        currentDifficulty = difficulty;
+    }
+
+    void difficultyRight()
+    {
+        if (currentDifficulty == Difficulty.Hippie)
+            currentDifficulty = Difficulty.Bald;
+        else
+            currentDifficulty++;
+    }
+
+    void difficultyLeft()
+    {
+        if (currentDifficulty == Difficulty.Bald)
+            currentDifficulty = Difficulty.Hippie;
+        else
+            currentDifficulty--;
     }
 }
