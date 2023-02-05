@@ -6,6 +6,9 @@ public class EnemyController : MonoBehaviour
 {
     public float HP;
 
+    protected AudioSource audioSource;
+    public AudioClip dmgSound;
+
     public void Damage(float dmg)
     {
         HP -= dmg;
@@ -14,6 +17,9 @@ public class EnemyController : MonoBehaviour
         {
             StartCoroutine(HitAnim(0.1f));
         }
+
+        audioSource.clip = dmgSound;
+        audioSource.Play();
     }
 
     IEnumerator HitAnim(float t)

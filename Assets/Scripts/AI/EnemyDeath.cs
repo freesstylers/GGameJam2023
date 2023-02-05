@@ -13,10 +13,20 @@ public class EnemyDeath : MonoBehaviour
     public float timer = 0.0f;
 
     private bool dead = false;
+
+    public AudioClip deathSound;
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<EnemyController>().GetComponent<AudioSource>();
+    }
     public void SendFlyingAndDie(Vector2 dir)
     {
         dead = true;
         flyDir = dir;
+        audioSource.clip = deathSound;
+        audioSource.Play();
     }
 
     private void Update()
