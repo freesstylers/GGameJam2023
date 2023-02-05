@@ -12,14 +12,9 @@ public class EnemySpawner : MonoBehaviour
     RectTransform tr_;
 
 
-    private void Start()
-    {
-        tr_ = GetComponent<RectTransform>();
-        GenerarEnemies();
-    }
-
     private void OnEnable()
     {
+        tr_ = GetComponent<RectTransform>();
         GenerarEnemies();
     }
 

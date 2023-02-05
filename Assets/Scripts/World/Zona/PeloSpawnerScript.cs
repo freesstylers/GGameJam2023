@@ -30,18 +30,12 @@ public class PeloSpawnerScript : MonoBehaviour
 
     private int biome_;
 
-    void Start()
+    void OnEnable()
     {
-
         tileMap_ = GetComponent<Tilemap>();
         tr_ = GetComponent<RectTransform>();
         GenerarPelos();
         GenerarParedes();
-    }
-
-    private void OnEnable()
-    {
-        GenerarPelos();
     }
 
     public void SetBiome(int biome)

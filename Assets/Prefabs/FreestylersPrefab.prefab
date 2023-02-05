@@ -341,7 +341,7 @@ MonoBehaviour:
   useAllRewiredGamePlayers: 0
   useRewiredSystemPlayer: 0
   rewiredPlayerIds: 00000000
-  usePlayingPlayersOnly: 0
+  usePlayingPlayersOnly: 1
   playerMice: []
   moveOneElementPerAxisPress: 1
   setActionsById: 1
@@ -355,11 +355,11 @@ MonoBehaviour:
   m_CancelButton: UICancel
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0
-  m_allowMouseInput: 1
-  m_allowMouseInputIfTouchSupported: 1
-  m_allowTouchInput: 1
-  m_deselectIfBackgroundClicked: 1
-  m_deselectBeforeSelecting: 1
+  m_allowMouseInput: 0
+  m_allowMouseInputIfTouchSupported: 0
+  m_allowTouchInput: 0
+  m_deselectIfBackgroundClicked: 0
+  m_deselectBeforeSelecting: 0
   m_ForceModuleActive: 0
 --- !u!1 &5197936575046464260
 GameObject:

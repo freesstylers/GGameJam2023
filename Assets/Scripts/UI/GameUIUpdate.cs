@@ -9,6 +9,11 @@ public class GameUIUpdate : MonoBehaviour
     public TextMeshProUGUI _pelos;
     public TextMeshProUGUI _HP;
 
+    private void Awake()
+    {
+         GameManager.instance.player = GameObject.Find("Player").GetComponent<PlayerInput>();
+    }
+
     private void Update()
     {
         _pipis.text = GameManager.instance.louseAccumulated.ToString();

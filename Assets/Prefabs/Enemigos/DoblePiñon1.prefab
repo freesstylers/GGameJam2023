@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: -5719705155535556458}
   - component: {fileID: 1695215939979042129}
   - component: {fileID: -4962154020856606647}
+  - component: {fileID: -4258835265064636174}
   m_Layer: 0
   m_Name: "DoblePi\xF1on1"
   m_TagString: Untagged
@@ -317,3 +318,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-4258835265064636174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8620136684732748608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4fb8066de1eca343883eba063a57929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 1

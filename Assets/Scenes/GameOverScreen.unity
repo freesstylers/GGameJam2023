@@ -747,6 +747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50abc4a7131d69a44ab1e6f57cb003a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _GAMEOVER: {fileID: 1757750353}
   _hairs: {fileID: 1805537661}
   _pipis: {fileID: 2019693899}
   backToMenu: {fileID: 369179367}
