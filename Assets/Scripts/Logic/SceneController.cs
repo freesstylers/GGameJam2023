@@ -8,6 +8,7 @@ public class SceneController : MonoBehaviour
     public static SceneController instance;
     public States currentState;
     public List<GameObject> objectStates;
+    public EnemySpawner enemySpawner;
 
     private void Start()
     {
@@ -28,6 +29,7 @@ public class SceneController : MonoBehaviour
                 MusicManager.instance.PlayLevelMusic();
                 break;
             case States.EventState:
+                enemySpawner.EraseEnemies();
                 MusicManager.instance.PlayEventMusic();
                 break;
             case States.RutaState:

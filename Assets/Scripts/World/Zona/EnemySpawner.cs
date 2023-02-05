@@ -11,6 +11,7 @@ public class EnemySpawner : MonoBehaviour
     public int maxEnemies_;
     RectTransform tr_;
 
+    private List<GameObject> enemiesList = new List<GameObject>();
 
     private void OnEnable()
     {
@@ -51,15 +52,22 @@ public class EnemySpawner : MonoBehaviour
             }
             GameObject thisEnemy = Instantiate(enemyPrefabs_[enemyCount]);
             Vector2 thisEnemyPos = new Vector2();
+            enemiesList.Add(thisEnemy);
 
             thisEnemyPos.x = Random.Range(iniPosX + 10, iniPosX + width - 10);
-            thisEnemyPos.y = Random.Range(iniPosY, iniPosY + height/2);
+            thisEnemyPos.y = Random.Range(iniPosY + height / 4, iniPosY + height);
 
             thisEnemy.transform.position = thisEnemyPos;
             pelosPositionsList.Add(thisEnemy.transform);
 
             thisEnemy.transform.parent = null;
         }
+    }
+
+    public void EraseEnemies()
+    {
+        foreach (GameObject obj in enemiesList) Destroy(obj);
+        enemiesList.Clear();
     }
 
 }

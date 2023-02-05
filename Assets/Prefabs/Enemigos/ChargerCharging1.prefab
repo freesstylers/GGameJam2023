@@ -192,7 +192,7 @@ MonoBehaviour:
   chargeDistance: 2
   chargeSpeed: 1
   chargeWindup: 1
-  resetTime: 5
+  resetTime: 3
   detectDistance: 3
 --- !u!114 &2957781810828234884
 MonoBehaviour:
