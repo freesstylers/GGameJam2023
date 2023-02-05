@@ -25,10 +25,13 @@ public class SceneController : MonoBehaviour
         {
             case States.GameState:
                 GameManager.instance.SetBiome(Random.Range(0, 4));
+                MusicManager.instance.PlayLevelMusic();
                 break;
             case States.EventState:
+                MusicManager.instance.PlayEventMusic();
                 break;
             case States.RutaState:
+                MusicManager.instance.PlayLevelSelectionMusic();
                 break;
             default:
                 break;

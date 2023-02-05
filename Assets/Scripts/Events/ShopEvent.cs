@@ -18,6 +18,8 @@ public class ShopEvent : BaseEvent
         CreateItemButton(Item.ItemType.ExtraHealth, Item.getItemCost(Item.ItemType.ExtraHealth), 2);
 
         base.changeText("test");
+
+        MusicManager.instance.PlayShopMusic();
     }
 
     // Update is called once per frame
