@@ -263,6 +263,7 @@ MonoBehaviour:
   - {fileID: 5674478387271984870, guid: ec11b473ecd52ff4393caa4e412fb9c3, type: 3}
   eventosAp_: 030000000300000002000000
   eventoTienda_: {fileID: 3689418926676605974, guid: e5166ff28cc26214dba44dfdda0a9567, type: 3}
+  eventoFin_: {fileID: 549393190052854928, guid: 81c1571b8c8517d45b569a80c9fe267a, type: 3}
   nodeMov: {fileID: 2923435739764941803}
 --- !u!114 &2923435739764941803
 MonoBehaviour:

@@ -20,6 +20,7 @@ public class WorldGeneration : MonoBehaviour
     public List<BaseEvent> eventos_;
     public List<int> eventosAp_;
     public BaseEvent eventoTienda_;
+    public BaseEvent eventoFin_;
 
     public NodeMovement nodeMov;
 
@@ -112,6 +113,8 @@ public class WorldGeneration : MonoBehaviour
         //gm.ForEach(x => x.ForEach(x => SetNodeNavigation(x)));
         EventSystem.current.SetSelectedGameObject(ini_.gameObject);
         SetTiendas(2);
+
+        fin_.SetEvent(eventoFin_);
     }
 
     private List<List<RuteNodes>> CreateLevel()
