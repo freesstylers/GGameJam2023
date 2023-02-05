@@ -31,7 +31,23 @@ public class EnemySpawner : MonoBehaviour
 
         for (int pelo = 0; pelo < cantPelosFinal; pelo++)
         {
-            GameObject thisEnemy = Instantiate(enemyPrefabs_[Random.Range(0, enemyPrefabs_.Length)]);
+            int rand = Random.Range(0, 100);
+            int enemyCount = 0;
+            if(rand<40)
+            {
+                enemyCount = 2;
+            } else if (rand >= 40 && rand < 70)
+            {
+                enemyCount = 0;
+            }
+            else if (rand >= 70 && rand < 90)
+            {
+                enemyCount = 1;
+            }else
+            {
+                enemyCount = 3;
+            }
+            GameObject thisEnemy = Instantiate(enemyPrefabs_[enemyCount]);
             Vector2 thisEnemyPos = new Vector2();
 
             bool safeZoned = false;
