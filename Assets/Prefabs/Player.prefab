@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DEBUG_INPUT: 0
-  HP: 10
+  MAX_HP: 15
   Speed: 2
   AttackDuration: 1
   _rigidbody: {fileID: 4595676158233825456}

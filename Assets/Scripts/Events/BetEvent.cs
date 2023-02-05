@@ -14,6 +14,7 @@ public class BetEvent : BaseEvent
 
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(bet);
+        button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Okay, let's bet!";
     }
 
     void bet()
@@ -50,12 +51,16 @@ public class BetEvent : BaseEvent
                 button.onClick.AddListener(functionMinusHair);
             }
         }
+
+        button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Fine, do it";
     }
     // Update is called once per frame
     void functionMinusLouse()
     {
         GameManager.instance.louseAccumulated -= 3;
         text.text = "R.I.P. Bozo";
+
+        button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Argh";
 
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() =>
@@ -70,6 +75,7 @@ public class BetEvent : BaseEvent
         GameManager.instance.hairsCollected -= 3;
         text.text = "Too much H&S";
 
+        button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "****";
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() =>
         {
@@ -82,6 +88,7 @@ public class BetEvent : BaseEvent
     {
         GameManager.instance.louseAccumulated += 3;
         text.text = "Congrats! You stink";
+        button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "[Dabs]";
 
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() => 
@@ -97,7 +104,7 @@ public class BetEvent : BaseEvent
     {
         GameManager.instance.hairsCollected += 3;
         text.text = "Puberty!";
-
+        button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Let's gooo";
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() =>
         {
