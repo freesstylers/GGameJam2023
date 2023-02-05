@@ -47,6 +47,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayButton()
     {
+        GameManager.instance.levelLoader.LoadScene("GameScreen");
     }
 
     public void Settings()

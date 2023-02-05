@@ -1,0 +1,43 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public enum States { RutaState, GameState, EventState, ResumeAfterG };
+public class SceneController : MonoBehaviour
+{
+    public static SceneController instance;
+    public States currentState;
+    public List<GameObject> objectStates;
+
+    private void Start()
+    {
+        instance = this;
+        ChangeState(States.RutaState);        
+    }
+
+    public void ChangeState(States s)
+    {
+        ClearStates();
+        objectStates[(int)s].SetActive(true);
+        currentState = s;
+
+        switch (s)
+        {
+            case States.GameState:
+                break;
+            case States.EventState:
+                break;
+            case States.RutaState:
+                break;
+            case States.ResumeAfterG:
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void ClearStates()
+    {
+        objectStates.ForEach(x => x.SetActive(false));
+    }
+}
