@@ -9,6 +9,7 @@ public class LoseEvent : BaseEvent
     // Start is called before the first frame update
     void Start()
     {
+        base.Start();
         text.text = "Hygiene police. Show us what you got";
         button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Ok... I did nothing wrong";
         int aux = Random.Range(0, 100);

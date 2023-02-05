@@ -421,7 +421,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 32767
   m_TargetDisplay: 0
 --- !u!114 &8779307554635672621
 MonoBehaviour:
@@ -755,8 +755,10 @@ MonoBehaviour:
   optionsLoader: {fileID: 0}
   levelLoader: {fileID: 0}
   pauseMenu: {fileID: 6687865482652886718}
+  player: {fileID: 0}
   hairsCollected: 0
   louseAccumulated: 0
+  defeat: 1
 --- !u!114 &8520966716116655224
 MonoBehaviour:
   m_ObjectHideFlags: 0
