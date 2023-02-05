@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShooterController : MonoBehaviour
+public class ShooterController : EnemyController
 {
     Transform target;
     public GameObject bullet;

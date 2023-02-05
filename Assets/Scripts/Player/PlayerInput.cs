@@ -98,11 +98,22 @@ public class PlayerInput : MonoBehaviour
 
         //TEMP!!!
         //DESACTIVAR COLLIDER CUANDO ANIMACI�N? TIEMPO?
-        Invoke("StopAttack", AttackDuration);
+        StartCoroutine(StopAttack());
     }
 
-    void StopAttack()
+    
+
+    IEnumerator StopAttack()
     {
+        yield return new WaitForEndOfFrame();
+
+        string animName = animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+
+        while(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == animName)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
         _attackArea.gameObject.SetActive(false);
         _attacking = false;
     }

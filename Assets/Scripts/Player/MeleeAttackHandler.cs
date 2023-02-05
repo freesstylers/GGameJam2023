@@ -20,6 +20,11 @@ public class AttackHandler : MonoBehaviour
         if (DEBUG_ATTACK)
             Debug.Log("HIT!\n NAME: " + collision.gameObject.name + " |||| TAG: " + collision.gameObject.tag);
 
+        if(collision.gameObject.tag == "Enemy")
+        {
+            collision.gameObject.GetComponent<EnemyController>().Damage(damage);
+        }
+
         //daño? ??
     }
 }

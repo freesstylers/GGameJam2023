@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Attack
   - Hair
+  - Enemy
   layers:
   - Default
   - TransparentFX
