@@ -21,6 +21,7 @@ public class ChargerController : EnemyController
     private bool detected = false;
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 

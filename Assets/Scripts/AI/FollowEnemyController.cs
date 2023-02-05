@@ -9,6 +9,7 @@ public class FollowEnemyController : EnemyController
     public float detectDistance;
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
