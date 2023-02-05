@@ -501,6 +501,7 @@ GameObject:
   - component: {fileID: 2405128575433576347}
   - component: {fileID: 2405128575433576346}
   - component: {fileID: 2405128575433576345}
+  - component: {fileID: 3494305655918359304}
   m_Layer: 0
   m_Name: TilemapParedes
   m_TagString: Untagged
@@ -665,6 +666,26 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!114 &3494305655918359304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2405128575433576348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1d947ff2dfe29438aaf7548ba59902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefabs_:
+  - {fileID: 8575230421639277917, guid: 497e3d92e8d477443884f47d138b89b5, type: 3}
+  - {fileID: 5170087086593185734, guid: 7b3c140e66f4d4c4aa136b7653f3eaca, type: 3}
+  - {fileID: 8620136684732748608, guid: 099642b24875292408d39a8d65a3a0c8, type: 3}
+  - {fileID: 8575230421639277917, guid: f21345bd98a8855419655dfd796a84a3, type: 3}
+  density_: 0.5
+  minEnemies_: 10
+  maxEnemies_: 20
 --- !u!1 &2405128575451022643
 GameObject:
   m_ObjectHideFlags: 0
