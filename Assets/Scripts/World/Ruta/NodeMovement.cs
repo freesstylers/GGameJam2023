@@ -13,7 +13,7 @@ public class NodeMovement : MonoBehaviour
 
     private void Update()
     {
-        if (ReInput.players.Players[0].GetButton("ButtonA"))
+        if (ReInput.players.Players[0].GetButtonDown("ButtonA"))
         {
             if(EventSystem.current.currentSelectedGameObject != currentNode?.gameObject)
             {
@@ -21,6 +21,7 @@ public class NodeMovement : MonoBehaviour
                 currentNode = EventSystem.current.currentSelectedGameObject.GetComponent<RuteNodes>();
                 currentNode?.CleanPrev();
                 currentNode.SetNextNavigation();
+                GameManager.instance.levelLoader.LoadTransition(States.GameState);
 
             }
         }         

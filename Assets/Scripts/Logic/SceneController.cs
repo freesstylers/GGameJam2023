@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum States { RutaState, GameState, EventState, ResumeAfterG };
+public enum States { RutaState, GameState, EventState };
 public class SceneController : MonoBehaviour
 {
     public static SceneController instance;
@@ -28,8 +28,6 @@ public class SceneController : MonoBehaviour
             case States.EventState:
                 break;
             case States.RutaState:
-                break;
-            case States.ResumeAfterG:
                 break;
             default:
                 break;

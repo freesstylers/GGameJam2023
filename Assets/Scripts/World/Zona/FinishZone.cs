@@ -22,5 +22,7 @@ public class FinishZone : MonoBehaviour
 
             p.EndLevel();
         }
+        //Aqui deberia terminar el nivel
+        Debug.Log("Finito");
     }
 }

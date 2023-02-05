@@ -310,6 +310,6 @@ public class PlayerInput : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        GameManager.instance.EndLevel();
+        GameManager.instance.levelLoader.LoadTransition(States.EventState);
     }
 }
