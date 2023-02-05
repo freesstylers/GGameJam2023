@@ -10,7 +10,7 @@ public class PlayerInput : MonoBehaviour
     bool DEBUG_INPUT = false;
 
     [SerializeField]
-    float HP;
+    public float HP;
     public float MAX_HP;
     public float Speed = 1.0F;
     public float AttackDuration = 1.0F;
@@ -259,6 +259,7 @@ public class PlayerInput : MonoBehaviour
 
         if(HP <= 0)
         {
+            HP = 0;
             Die();
         }
         else if(HP > MAX_HP)
