@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     public int louseAccumulated;
 
     enum Difficulty { Bald, Normal, Hippie };
+    public enum States { MenuState, GameState, EventState, RutaState, ResumeAfterG };
+    public States currentState;
+    public List<GameObject> objectStates;
 
     Difficulty currentDifficulty = Difficulty.Normal;
     void Awake()
@@ -68,6 +71,7 @@ public class GameManager : MonoBehaviour
     public void GoToPlayScene(int biome)
     {
         biome_ = biome;
+        ChangeState(States.RutaState);
         SceneManager.LoadScene("ZonaScene");   
     }
 
@@ -85,6 +89,36 @@ public class GameManager : MonoBehaviour
     public void EndLevel()
     {
         //player.EndLevel();
+        ChangeState(States.ResumeAfterG);
+    }
+
+    public void ChangeState(States s)
+    {
+        ClearStates();
+        objectStates[(int)s].SetActive(true);
+        currentState = s;
+
+        switch (s)
+        {
+            case States.MenuState:
+                
+                break;
+            case States.GameState:
+                break;
+            case States.EventState:
+                break;
+            case States.RutaState:
+                break;
+            case States.ResumeAfterG:
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void ClearStates()
+    {
+        objectStates.ForEach(x => x.SetActive(false));
     }
 
     private int biome_ = 0;
