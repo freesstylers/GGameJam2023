@@ -289,4 +289,27 @@ public class PlayerInput : MonoBehaviour
     {
         GameManager.instance.levelLoader.LoadScene("GameOverScreen");
     }
+
+    public void EndLevel()
+    {
+        FindObjectOfType<ChampuController>().enabled = false;
+
+        animator.SetTrigger("EndLevel");
+
+        StartCoroutine(Yippee()); 
+    }
+
+    IEnumerator Yippee()
+    {
+        yield return new WaitForEndOfFrame();
+
+        string animName = animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+
+        while (animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == animName)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        GameManager.instance.EndLevel();
+    }
 }

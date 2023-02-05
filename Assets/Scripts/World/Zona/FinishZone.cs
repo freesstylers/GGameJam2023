@@ -12,8 +12,15 @@ public class FinishZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Aqui deberia terminar el nivel
-        Debug.Log("Finito");
-        GameManager.instance.EndLevel();
+
+        PlayerInput p = collision.gameObject.GetComponent<PlayerInput>();
+
+        if (p != null)
+        {
+            //Aqui deberia terminar el nivel
+            Debug.Log("Finito");
+
+            p.EndLevel();
+        }
     }
 }

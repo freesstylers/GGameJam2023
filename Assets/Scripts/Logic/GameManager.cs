@@ -32,8 +32,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this);
         }
-
-        //player = GameObject.Find("Player").GetComponent<PlayerInput>();
     }
 
     private void Update()
@@ -84,8 +82,9 @@ public class GameManager : MonoBehaviour
 
     public void EndLevel()
     {
-        //player.EndLevel();
+        //ChangeState(States.ResumeAfterG);
     }
+
 
     private int biome_ = 0;
 }
