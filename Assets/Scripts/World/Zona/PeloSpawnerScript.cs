@@ -35,6 +35,7 @@ public class PeloSpawnerScript : MonoBehaviour
         tileMap_ = GetComponent<Tilemap>();
         tr_ = GetComponent<RectTransform>();
         GenerarPelos();
+        tileMap_.ClearAllTiles();
         GenerarParedes();
     }
 
@@ -162,6 +163,18 @@ public class PeloSpawnerScript : MonoBehaviour
             for (int ini = (int)thisParedPosDer.x-1; ini < tr_.position.x + tr_.rect.width; ini++)
             {
                 tileMap_.SetTile(new Vector3Int(ini+1, (int)(iniPosY + i), 0), paredesTile_[0]);
+            }
+
+            //Erase de las de enmedio
+            
+            for (int ini = (int)thisParedPosDer.x - 1; ini < tr_.position.x + tr_.rect.width; ini++)
+            {
+                tileMap_.SetTile(new Vector3Int(ini + 1, (int)(iniPosY + i), 0), paredesTile_[0]);
+            }
+
+            for (int ini = (int)thisParedPosDer.x - 1; ini < tr_.position.x + tr_.rect.width; ini++)
+            {
+                tileMap_.SetTile(new Vector3Int(ini + 1, (int)(iniPosY + i), 0), paredesTile_[0]);
             }
 
             if (lastXIzq > thisParedPosIzq.x)

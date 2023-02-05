@@ -306,7 +306,7 @@ public class PlayerInput : MonoBehaviour
 
     public void EndLevel()
     {
-        FindObjectOfType<ChampuController>().enabled = false;
+        //FindObjectOfType<ChampuController>().enabled = false;
 
         animator.SetTrigger("EndLevel");
 

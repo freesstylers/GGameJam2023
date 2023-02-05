@@ -47,6 +47,8 @@ public class TileGenerator : MonoBehaviour
 
         GenerateTiles();
         peloSpawner_.GenerarPelos();
+
+        champu_.StartLevel();
     }
     
     

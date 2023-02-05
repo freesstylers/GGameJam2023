@@ -44,4 +44,9 @@ public class ChampuController : MonoBehaviour
     {
         canMove = false;
     }
+
+    public void StartLevel()
+    {
+        canMove = true;
+    }
 }
