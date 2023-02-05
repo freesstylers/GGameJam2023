@@ -635,6 +635,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2f049d94bb5ca6148bb4d120f3f5ac0b, type: 2}
   - {fileID: 11400000, guid: 0a1152687dad14a4e8ddfd5c2659eea8, type: 2}
   - {fileID: 11400000, guid: 20b92bf548a67414dbe89384e91428dd, type: 2}
+  pelosSprites_:
+  - {fileID: 21300000, guid: 234a112a0e64cf44cb21bad10debe11e, type: 3}
+  - {fileID: 21300000, guid: 7912a39588d2d3441afa27d47430d113, type: 3}
+  animationControllers_:
+  - {fileID: 9100000, guid: e933d28e32c537240a3ed45efd4f4403, type: 2}
+  - {fileID: 9100000, guid: 0a5642fbbfa7a8a44adb6094318e0f5c, type: 2}
   pelo_: {fileID: 950955713882978930, guid: 0f50db20487e32c43af0a60b1fd3df30, type: 3}
   density_: 0.4
   minPelos_: 50
@@ -823,6 +829,7 @@ MonoBehaviour:
   camera_: {fileID: 508110480}
   player_: {fileID: 2908618908241987162}
   finish_: {fileID: 2405128574796451622}
+  peloSpawner_: {fileID: 2405128575433576346}
 --- !u!1001 &2405128574391816777
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -980,6 +987,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   piojoPrefab: {fileID: 947691562328198494, guid: 2551c9cc5eb6368489fd3d3a21dcf96a, type: 3}
+  piojoThrowPrefab: {fileID: 947691562328198494, guid: 8bd82a3a5cf8e7744a967fa2f61e33e3, type: 3}
 --- !u!1 &2908618908241987161 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 665906910692625296, guid: 2342d6d184f8c35449ee1a5f959e2504, type: 3}

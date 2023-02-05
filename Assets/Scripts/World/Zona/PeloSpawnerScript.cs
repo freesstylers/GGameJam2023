@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.Animations;
 
 public class PeloSpawnerScript : MonoBehaviour
 {
     Tilemap tileMap_;
     public Tile[] paredesTile_;
+
+    public Sprite[] pelosSprites_;
+    public RuntimeAnimatorController[] animationControllers_;
 
     public GameObject pelo_;
 
@@ -22,6 +26,8 @@ public class PeloSpawnerScript : MonoBehaviour
     public float paredVariance_;
     private int pelosCount;
 
+    private int biome_;
+
     void Start()
     {
 
@@ -29,6 +35,11 @@ public class PeloSpawnerScript : MonoBehaviour
         RectTransform tr_ = GetComponent<RectTransform>();
         GenerarPelos(tr_);
         GenerarParedes(tr_);
+    }
+
+    public void SetBiome(int biome)
+    {
+        biome_ = biome;
     }
 
     private void GenerarPelos(RectTransform tr_)
@@ -68,6 +79,17 @@ public class PeloSpawnerScript : MonoBehaviour
 
             int piojosCount = Random.Range(0, 4);
             thisPelo.GetComponent<Pelo>().SetPiojos(piojosCount);
+
+            if(piojosCount>0)
+            {
+                thisPelo.GetComponent<Animator>().runtimeAnimatorController = animationControllers_[1];
+                thisPelo.GetComponent<SpriteRenderer>().sprite = pelosSprites_[1];
+            }
+            int rand = Random.Range(0, 2);
+            if(rand == 1)
+            {
+                thisPelo.GetComponent<SpriteRenderer>().flipX = true;
+            }
 
             thisPelo.transform.parent = null;
         }

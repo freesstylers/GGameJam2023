@@ -123,8 +123,8 @@ public class PlayerInput : MonoBehaviour
         GameObject piojo = spawner.ThrowPiojo();
         if(piojo != null)
         {
-            Instantiate(piojo, gameObject.transform);
-            piojo.GetComponent<PiojoThrow>().SetDirection(_lookDir);
+            GameObject newpiojo = Instantiate(piojo, gameObject.transform);
+            newpiojo.GetComponent<PiojoThrow>().SetDirection(_lookDir);
         }
     }
     void Interact(GameObject g)

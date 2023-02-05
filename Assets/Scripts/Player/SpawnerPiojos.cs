@@ -14,7 +14,8 @@ public class SpawnerPiojos : MonoBehaviour
 
     public void SpawnPiojo()
     {
-        GameObject newpiojo = Instantiate(piojoPrefab, transform);
+        GameObject newpiojo = Instantiate(piojoPrefab);
+        newpiojo.transform.position = transform.position;
         newpiojo.GetComponent<WanderAround>().SetObjectToWander(gameObject);
         piojosPool_.Enqueue(newpiojo);
     }

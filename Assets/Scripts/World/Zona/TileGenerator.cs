@@ -20,6 +20,7 @@ public class TileGenerator : MonoBehaviour
     public CameraFollowPlayer camera_;
     public PlayerInput player_;
     public FinishZone finish_;
+    public PeloSpawnerScript peloSpawner_;
 
     private void OnEnable()
     {
@@ -40,6 +41,8 @@ public class TileGenerator : MonoBehaviour
         player_.SetStartingPosition(map_.position.y - map_.rect.height / 2 + map_.rect.height / 10);
 
         finish_.SetPosition(map_.position.y + map_.rect.height / 2 - map_.rect.height / 10);
+
+        peloSpawner_.SetBiome(biomaType);
 
         GenerateTiles();
         
