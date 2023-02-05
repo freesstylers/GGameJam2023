@@ -24,11 +24,23 @@ public class SettingsMenuScript : MonoBehaviour
 
     protected void StartText()
     {
+        if (Screen.fullScreen)
+            fullScreen.text = "Yes";
+        else
+            fullScreen.text = "No";
+
+        resolution.text = Screen.currentResolution.ToString().Split("@")[0];
+
         FPSLimit.text = GameManager.instance.optionsLoader.FPSLimits[GameManager.instance.optionsLoader.FPSLimitIterator].ToString();
 
         musicVolume.text = GameManager.instance.optionsLoader.currentMusicVolume.ToString();
 
         sfxVolume.text = GameManager.instance.optionsLoader.currentSFX_Volume.ToString();
+
+        if (QualitySettings.vSyncCount == 0)
+            VSync.text = "No";
+        else
+            VSync.text = "Yes";
 
         //updateLanguageText();
     }

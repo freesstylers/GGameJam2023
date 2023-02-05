@@ -39,6 +39,7 @@ public class PlayerInput : MonoBehaviour
         _attackArea.Initialize(this);
         animator = GetComponent<Animator>();
         pivot = transform.GetChild(0);
+        interactableContactFilter.NoFilter();
     }
 
     // Update is called once per frame

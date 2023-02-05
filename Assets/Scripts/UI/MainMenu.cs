@@ -15,6 +15,8 @@ public class MainMenu : MonoBehaviour
     GameObject creditsGameObject;
 
     GameObject selected;
+    [SerializeField]
+    GameObject firstSelected;
 
     bool settingsOpened = false;
     bool creditsOpened = false;
@@ -23,6 +25,7 @@ public class MainMenu : MonoBehaviour
     {
         settingsGameObject.SetActive(settingsOpened);
         creditsGameObject.SetActive(creditsOpened);
+        EventSystem.current.SetSelectedGameObject(firstSelected);
     }
 
     public void Twitter()
