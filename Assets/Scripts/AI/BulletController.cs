@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletController : MonoBehaviour
+public class BulletController : EnemyAttack
 {
     private Vector2 direction;
 
@@ -14,14 +14,24 @@ public class BulletController : MonoBehaviour
     void Update()
     {
         float deltaTime = Time.deltaTime;
-        time += deltaTime;
-        if (time > deathTimer) Destroy(gameObject);
-
         transform.position = new Vector3(transform.position.x + direction.x * deltaTime * bulletSpeed, transform.position.y + direction.y * deltaTime * bulletSpeed, 0);
+
+        time += deltaTime;
+        if (time > deathTimer)
+            Destroy(gameObject);
     }
 
     public void SetDirection(Vector2 newdir)
     {
         direction = newdir;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlayerInput>().TakeDamage(Damage);
+            Destroy(gameObject);
+        }
     }
 }

@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 7661911971900427599}
   - component: {fileID: 5663777139772721621}
   - component: {fileID: 4150407068513881396}
+  - component: {fileID: 2248656062168525516}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,5 +98,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22bbacde25089de4895c1e2cbaf17850, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 10
-  deathTimer: 3
+  Damage: 1
+  bulletSpeed: 1
+  deathTimer: 0.5
+--- !u!58 &2248656062168525516
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7387070280770856460}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.06

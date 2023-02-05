@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PeloDosSacar
+  m_Name: PeloDosSacarIdle
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -22,15 +22,6 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.6666667
         value: 0
         inSlope: 0
         outSlope: 0
@@ -48,16 +39,6 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 600dff420050bed4a8402db3bbfd6687, type: 3}
-    - time: 0.13333334
-      value: {fileID: 21300000, guid: 84e62e622ceff0d41af4cc94311ebc6d, type: 3}
-    - time: 0.26666668
-      value: {fileID: 21300000, guid: 2b9f2da4fcfb26548ac486e696e413c2, type: 3}
-    - time: 0.4
-      value: {fileID: 21300000, guid: 109924f9205b3324eafd599873a0fed4, type: 3}
-    - time: 0.53333336
-      value: {fileID: 21300000, guid: 54cc9f44281b82942a7f4693a7a24891, type: 3}
-    - time: 0.6666667
       value: {fileID: 21300000, guid: faaf50e077d15bb4099a83897f1e3eae, type: 3}
     attribute: m_Sprite
     path: 
@@ -72,31 +53,26 @@ AnimationClip:
     genericBindings:
     - serializedVersion: 2
       path: 0
-      attribute: 304273561
-      script: {fileID: 0}
-      typeID: 212
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 0
       attribute: 0
       script: {fileID: 0}
       typeID: 212
       customType: 23
       isPPtrCurve: 1
+    - serializedVersion: 2
+      path: 0
+      attribute: 304273561
+      script: {fileID: 0}
+      typeID: 212
+      customType: 0
+      isPPtrCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 600dff420050bed4a8402db3bbfd6687, type: 3}
-    - {fileID: 21300000, guid: 84e62e622ceff0d41af4cc94311ebc6d, type: 3}
-    - {fileID: 21300000, guid: 2b9f2da4fcfb26548ac486e696e413c2, type: 3}
-    - {fileID: 21300000, guid: 109924f9205b3324eafd599873a0fed4, type: 3}
-    - {fileID: 21300000, guid: 54cc9f44281b82942a7f4693a7a24891, type: 3}
     - {fileID: 21300000, guid: faaf50e077d15bb4099a83897f1e3eae, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.68333334
+    m_StopTime: 0.016666668
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -117,15 +93,6 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.6666667
         value: 0
         inSlope: 0
         outSlope: 0
