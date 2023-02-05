@@ -26,15 +26,17 @@ public class PeloSpawnerScript : MonoBehaviour
     public float paredVariance_;
     private int pelosCount;
 
+    private RectTransform tr_;
+
     private int biome_;
 
     void Start()
     {
 
         tileMap_ = GetComponent<Tilemap>();
-        RectTransform tr_ = GetComponent<RectTransform>();
-        GenerarPelos(tr_);
-        GenerarParedes(tr_);
+        tr_ = GetComponent<RectTransform>();
+        GenerarPelos();
+        GenerarParedes();
     }
 
     public void SetBiome(int biome)
@@ -42,7 +44,7 @@ public class PeloSpawnerScript : MonoBehaviour
         biome_ = biome;
     }
 
-    private void GenerarPelos(RectTransform tr_)
+    public void GenerarPelos()
     {
 
         float width = tr_.rect.width;
@@ -106,7 +108,7 @@ public class PeloSpawnerScript : MonoBehaviour
         pelosCount = pelosPositionsList.Count;
     }
 
-    private void GenerarParedes(RectTransform tr_)
+    private void GenerarParedes()
     {
         //Posiciones iniciales eje X
         float iniPosXIzq = tr_.position.x - tr_.rect.width / 2.0f + paredWidth_;

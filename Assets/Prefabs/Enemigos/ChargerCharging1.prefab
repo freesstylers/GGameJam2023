@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cca18b1636237e48888a8016ca5e7f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 5
+  HP: 1
   dmgSound: {fileID: 8300000, guid: 13afd4db6bc236245a3455b8ef216bd9, type: 3}
   chargeDistance: 2
   chargeSpeed: 1

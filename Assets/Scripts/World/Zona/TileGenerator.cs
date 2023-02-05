@@ -21,6 +21,7 @@ public class TileGenerator : MonoBehaviour
     public PlayerInput player_;
     public FinishZone finish_;
     public PeloSpawnerScript peloSpawner_;
+    public EnemySpawner enemySpawner_;
 
     private void OnEnable()
     {
@@ -45,7 +46,9 @@ public class TileGenerator : MonoBehaviour
         peloSpawner_.SetBiome(biomaType);
 
         GenerateTiles();
-        
+        peloSpawner_.GenerarPelos();
+        enemySpawner_.GenerarEnemies();
+
     }
     
     

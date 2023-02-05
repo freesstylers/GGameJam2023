@@ -29,7 +29,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 665906910692625301}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &665906910692625296
 GameObject:
@@ -64,8 +64,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2038166587590803389}
   - {fileID: 8865105403526806967}
+  - {fileID: 2038166587590803389}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DEBUG_INPUT: 0
+  HP: 0
   MAX_HP: 15
   Speed: 2
   AttackDuration: 1
@@ -303,7 +304,7 @@ Transform:
   - {fileID: 5275835360483670159}
   - {fileID: 6247030142697631113}
   m_Father: {fileID: 665906910692625301}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6085478949855718299
 GameObject:

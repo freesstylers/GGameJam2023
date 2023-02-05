@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69246664997ad2f4cbf55d3f9ff82b94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 3
+  HP: 1
   dmgSound: {fileID: 8300000, guid: c8d698086b678f74db90649c78b0f3d5, type: 3}
   detectDistance: 3
 --- !u!58 &1695215939979042129

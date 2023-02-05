@@ -140,6 +140,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 508110478, guid: f34842fd500ce0d49a9999090d1eb95a, type: 3}
+      propertyPath: orthographic size
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2405128574610615553, guid: f34842fd500ce0d49a9999090d1eb95a, type: 3}
       propertyPath: m_Name
       value: GamePref

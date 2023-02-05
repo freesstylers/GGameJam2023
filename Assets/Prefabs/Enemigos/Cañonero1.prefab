@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 653efd07471345d4087c24732bb411ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 10
+  HP: 1
   dmgSound: {fileID: 8300000, guid: 9e5194f1949ddbc408b68bc19fd80be1, type: 3}
   bullet: {fileID: 7387070280770856460, guid: 882c6656388227844b9404c5e9d0e7cb, type: 3}
   shootCD: 1

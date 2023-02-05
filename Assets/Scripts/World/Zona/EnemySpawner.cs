@@ -9,14 +9,16 @@ public class EnemySpawner : MonoBehaviour
     public float density_;
     public int minEnemies_;
     public int maxEnemies_;
+    RectTransform tr_;
+
 
     private void Start()
     {
-        RectTransform tr_ = GetComponent<RectTransform>();
-        GenerarPelos(tr_);
+        tr_ = GetComponent<RectTransform>();
+        GenerarEnemies();
     }
 
-    private void GenerarPelos(RectTransform tr_)
+    public void GenerarEnemies()
     {
 
         float width = tr_.rect.width;
@@ -50,19 +52,8 @@ public class EnemySpawner : MonoBehaviour
             GameObject thisEnemy = Instantiate(enemyPrefabs_[enemyCount]);
             Vector2 thisEnemyPos = new Vector2();
 
-            bool safeZoned = false;
-            while (!safeZoned)
-            {
-                safeZoned = true;
-
-                thisEnemyPos.x = Random.Range(iniPosX + 10, iniPosX + width - 10);
-                thisEnemyPos.y = Random.Range(iniPosY, iniPosY + height);
-
-                foreach (Transform pos in pelosPositionsList)
-                {
-                    if (Vector2.Distance(thisEnemyPos, pos.position) < 2) safeZoned = false;
-                }
-            }
+            thisEnemyPos.x = Random.Range(iniPosX + 10, iniPosX + width - 10);
+            thisEnemyPos.y = Random.Range(iniPosY, iniPosY + height);
 
             thisEnemy.transform.position = thisEnemyPos;
             pelosPositionsList.Add(thisEnemy.transform);

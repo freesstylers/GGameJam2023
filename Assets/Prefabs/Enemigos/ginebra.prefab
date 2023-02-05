@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6530907fab21819449671d3ead0a5692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 5
+  HP: 1
   dmgSound: {fileID: 8300000, guid: a0c92e588158bf34090306fe3a2104df, type: 3}
   HealthUp: 3
 --- !u!95 &2268840035307438744
