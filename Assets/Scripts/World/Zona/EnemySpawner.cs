@@ -18,6 +18,11 @@ public class EnemySpawner : MonoBehaviour
         GenerarEnemies();
     }
 
+    private void OnEnable()
+    {
+        GenerarEnemies();
+    }
+
     public void GenerarEnemies()
     {
 
@@ -53,7 +58,7 @@ public class EnemySpawner : MonoBehaviour
             Vector2 thisEnemyPos = new Vector2();
 
             thisEnemyPos.x = Random.Range(iniPosX + 10, iniPosX + width - 10);
-            thisEnemyPos.y = Random.Range(iniPosY, iniPosY + height);
+            thisEnemyPos.y = Random.Range(iniPosY, iniPosY + height/2);
 
             thisEnemy.transform.position = thisEnemyPos;
             pelosPositionsList.Add(thisEnemy.transform);

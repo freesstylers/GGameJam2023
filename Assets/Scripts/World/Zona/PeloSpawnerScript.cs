@@ -39,6 +39,11 @@ public class PeloSpawnerScript : MonoBehaviour
         GenerarParedes();
     }
 
+    private void OnEnable()
+    {
+        GenerarPelos();
+    }
+
     public void SetBiome(int biome)
     {
         biome_ = biome;

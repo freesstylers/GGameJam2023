@@ -47,8 +47,6 @@ public class TileGenerator : MonoBehaviour
 
         GenerateTiles();
         peloSpawner_.GenerarPelos();
-        enemySpawner_.GenerarEnemies();
-
     }
     
     
