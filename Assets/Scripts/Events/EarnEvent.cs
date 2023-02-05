@@ -9,7 +9,8 @@ public class EarnEvent : BaseEvent
     // Start is called before the first frame update
     void Start()
     {
-        text.text = "";
+        text.text = "You have earned a Dogecoin. It has no value, so I will exchange it for something more useful for you";
+        button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Ok... Thankfully I am not Elon Musk";
 
         int aux = Random.Range(0, 100);
 
@@ -23,22 +24,41 @@ public class EarnEvent : BaseEvent
         }
     }
 
-    // Update is called once per frame
     void functionMoreLouse()
     {
-        GameManager.instance.louseAccumulated += 3;
-        text.text = "";
+        int aux = Random.Range(0, 5);
+
+        GameManager.instance.louseAccumulated += aux;
+        text.text = "Congrats! You earned " + aux.ToString() + " more Lice. Are you trying to invade a country?";
+        button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "No. I am invading your scalp";
 
         button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(base.deactivateText);
+        button.onClick.AddListener(() =>
+        {
+            base.deactivateText();
+            NextState();
+        });
     }
 
     void functionMoreHair()
     {
-        GameManager.instance.hairsCollected += 3;
-        text.text = "";
+        int aux = Random.Range(0, 5);
 
+        GameManager.instance.hairsCollected += aux;
+        text.text = "Congratulations! You are " + aux.ToString() + " hairs further from being bald";
+        button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Wear your hair with pride";
         button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(base.deactivateText);
+        button.onClick.AddListener(() =>
+        {
+            base.deactivateText();
+            NextState();
+        });
+    }
+
+    private void NextState()
+    {
+        GameManager.instance.levelLoader.LoadTransition(States.RutaState);
+        Destroy(button);
+        Destroy(gameObject);
     }
 }

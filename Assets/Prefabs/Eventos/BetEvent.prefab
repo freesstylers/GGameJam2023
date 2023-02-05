@@ -284,7 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 7504812611251910655}
   text: {fileID: 1379182145193767334}
-  chance: 0
+  chance: 40
 --- !u!1001 &5344967111940646480
 PrefabInstance:
   m_ObjectHideFlags: 0

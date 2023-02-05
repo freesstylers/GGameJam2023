@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public LevelLoader levelLoader;
     public PauseMenu pauseMenu;
 
-    private PlayerInput player;
+    public PlayerInput player;
     private ChampuController champu;
     public int hairsCollected;
     public int louseAccumulated;
