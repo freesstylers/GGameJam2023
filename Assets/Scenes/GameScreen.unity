@@ -531,6 +531,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: mapaPref
       objectReference: {fileID: 0}
+    - target: {fileID: 2923435739764941800, guid: cb5bd88340dd89b43ac6ea36f4c267c2, type: 3}
+      propertyPath: eventoTienda_
+      value: 
+      objectReference: {fileID: 7708581568518003064, guid: 56b898de02573984c9a9bcd1e4bd679c, type: 3}
     - target: {fileID: 2923435739764941803, guid: cb5bd88340dd89b43ac6ea36f4c267c2, type: 3}
       propertyPath: evH
       value: 
