@@ -9,6 +9,11 @@ public class EnemyController : MonoBehaviour
     protected AudioSource audioSource;
     public AudioClip dmgSound;
 
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     public void Damage(float dmg)
     {
         HP -= dmg;
@@ -23,26 +28,26 @@ public class EnemyController : MonoBehaviour
     }
 
     IEnumerator HitAnim(float t)
-{
-    Color c = new Color(1, 0, 0);
-
-    Color realC = new Color(1, 1, 1);
-
-    float timer = 0.0f;
-
-    while (timer < t)
     {
-        GetComponent<SpriteRenderer>().color = Color.Lerp(c, realC, timer / t);
+        Color c = new Color(1, 0, 0);
 
-        yield return new WaitForEndOfFrame();
+        Color realC = new Color(1, 1, 1);
 
-        timer += Time.deltaTime;
+        float timer = 0.0f;
+
+        while (timer < t)
+        {
+            GetComponent<SpriteRenderer>().color = Color.Lerp(c, realC, timer / t);
+
+            yield return new WaitForEndOfFrame();
+
+            timer += Time.deltaTime;
+        }
+
+        GetComponent<SpriteRenderer>().color = realC;
     }
 
-    GetComponent<SpriteRenderer>().color = realC;
-}
-
-public void Die(PlayerInput player)
+    public virtual void Die(PlayerInput player)
     {
         Vector2 deathDir = (transform.position - player.gameObject.transform.position).normalized;
         GetComponent<EnemyDeath>().SendFlyingAndDie(deathDir);

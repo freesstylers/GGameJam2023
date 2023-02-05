@@ -57,10 +57,12 @@ public class BetEvent : BaseEvent
     // Update is called once per frame
     void functionMinusLouse()
     {
-        GameManager.instance.louseAccumulated -= 3;
-        text.text = "R.I.P. Bozo";
+        int aux = Random.Range(0, GameManager.instance.louseAccumulated);
 
-        button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Argh";
+        GameManager.instance.louseAccumulated -= aux;
+        text.text = "You have lost " + aux.ToString() + " Lice to the Shampoo. But now you will smell Minty Fresh";
+
+        button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Live Lice free, I guess";
 
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() =>
@@ -72,8 +74,11 @@ public class BetEvent : BaseEvent
 
     void functionMinusHair()
     {
-        GameManager.instance.hairsCollected -= 3;
-        text.text = "Too much H&S";
+
+        int aux = Random.Range(0, GameManager.instance.hairsCollected);
+
+        GameManager.instance.louseAccumulated -= aux;
+        text.text = "I will take " + aux.ToString() + " pieces of hair. AND STOP TRYING TO TAKE MORE";
 
         button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "****";
         button.onClick.RemoveAllListeners();
@@ -86,25 +91,27 @@ public class BetEvent : BaseEvent
 
     void functionMoreLouse()
     {
-        GameManager.instance.louseAccumulated += 3;
-        text.text = "Congrats! You stink";
-        button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "[Dabs]";
+        int aux = Random.Range(0, 5);
+
+        GameManager.instance.louseAccumulated += aux;
+        text.text = "Congrats! You earned " + aux.ToString() + " more Lice. Are you trying to invade a country?";
+        button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "No. I am invading your scalp";
 
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() => 
         {
             base.deactivateText();
             NextState();
-        });
-
-        
+        }); 
     }
 
     void functionMoreHair()
     {
-        GameManager.instance.hairsCollected += 3;
-        text.text = "Puberty!";
-        button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Let's gooo";
+        int aux = Random.Range(0, 5);
+
+        GameManager.instance.hairsCollected += aux;
+        text.text = "Congratulations! You are " + aux.ToString() + " hairs further from being bald";
+        button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Wear your hair with pride";
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() =>
         {

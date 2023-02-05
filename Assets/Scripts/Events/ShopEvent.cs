@@ -4,50 +4,20 @@ using UnityEngine;
 
 public class ShopEvent : BaseEvent
 {
-    [SerializeField]
-    Transform container;
-    [SerializeField]
-    Transform itemTemplate;
-    [SerializeField]
-    float ItemHeight;
     // Start is called before the first frame update
     void Start()
     {
-        CreateItemButton(Item.ItemType.ExtraSword, Item.getItemCost(Item.ItemType.ExtraSword), 0);
-        CreateItemButton(Item.ItemType.UpdgradeSword, Item.getItemCost(Item.ItemType.UpdgradeSword), 1);
-        CreateItemButton(Item.ItemType.ExtraHealth, Item.getItemCost(Item.ItemType.ExtraHealth), 2);
-
-        base.changeText("test");
-
         MusicManager.instance.PlayShopMusic();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public void CreateItemButton(Item.ItemType type, int itemCost, int positionIndex)
-    {
-        Transform additionalItem = Instantiate(itemTemplate, container);
-
-        RectTransform additionalItemRT = additionalItem.GetComponent<RectTransform>();
-
-        additionalItemRT.anchoredPosition = new Vector2(0, -ItemHeight * positionIndex);
-
-        //Set template parameters
-    }
-
-    public void BuyItem(Item.ItemType type)
+    public void TryBuySpeed()
     {
         //Check money
-
-
-        if (GameManager.instance.hairsCollected > Item.getItemCost(type))
+        if (GameManager.instance.hairsCollected >= 15)
         {
-            GameManager.instance.hairsCollected -= Item.getItemCost(type);
-
+            GameManager.instance.hairsCollected -= 15;
+            GameManager.instance.player.Speed++;
+            NextState();
             //Modify player stats
         }
         else
@@ -57,38 +27,49 @@ public class ShopEvent : BaseEvent
         }
     }
 
-    public class Item
+    public void TryBuyDamage()
     {
-        public enum ItemType
+        //Check money
+        if (GameManager.instance.hairsCollected >= 15)
         {
-            None,
-            ExtraSword,
-            UpdgradeSword,
-            ExtraHealth
-            //...
+            GameManager.instance.hairsCollected -= 15;
+            GameManager.instance.player._attackArea.damage++;
+            NextState();
+            //Modify player stats
         }
-
-        public static int getItemCost(ItemType itemType)
+        else
         {
-            int ret = 0;
-
-            switch (itemType)
-            {
-                case ItemType.None:
-                    ret = 0;
-                    break;
-                case ItemType.ExtraSword:
-                    ret = 100;
-                    break;
-                case ItemType.UpdgradeSword:
-                    ret = 200;
-                    break;
-                case ItemType.ExtraHealth:
-                    ret = 150;
-                    break;
-            }
-
-            return ret;
+            //Sound
+            //Modify color
         }
+    }
+
+    public void TryBuyHealth()
+    {
+        //Check money
+        if (GameManager.instance.hairsCollected >= 15)
+        {
+            GameManager.instance.hairsCollected -= 15;
+            GameManager.instance.player.MAX_HP++;
+            NextState();
+            //Modify player stats
+        }
+        else
+        {
+            //Sound
+            //Modify color
+        }
+    }
+
+    public void Pass()
+    {
+        NextState();
+    }
+
+    private void NextState()
+    {
+        GameManager.instance.levelLoader.LoadTransition(States.RutaState);
+        Destroy(button);
+        Destroy(gameObject);
     }
 }
