@@ -82,6 +82,7 @@ public class PlayerInput : MonoBehaviour
             if (Rewired.ReInput.players.Players[0].GetButtonDown("ButtonY"))
             {
                 Debug.Log("Y!");
+                Throw();
             }
         }
 
@@ -109,7 +110,12 @@ public class PlayerInput : MonoBehaviour
 
     void Throw()
     {
-
+        GameObject piojo = spawner.ThrowPiojo();
+        if(piojo != null)
+        {
+            Instantiate(piojo, gameObject.transform);
+            piojo.GetComponent<PiojoThrow>().SetDirection(_lookDir);
+        }
     }
 
     [SerializeField]

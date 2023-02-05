@@ -901,6 +901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   piojoPrefab: {fileID: 947691562328198494, guid: 2551c9cc5eb6368489fd3d3a21dcf96a, type: 3}
+  piojoThrowPrefab: {fileID: 947691562328198494, guid: 8bd82a3a5cf8e7744a967fa2f61e33e3, type: 3}
 --- !u!1001 &1741304421
 PrefabInstance:
   m_ObjectHideFlags: 0

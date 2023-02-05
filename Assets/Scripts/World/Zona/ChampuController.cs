@@ -9,15 +9,20 @@ public class ChampuController : MonoBehaviour
     //Tamaño vertical de la zona
     private float mapSize;
 
+    private bool canMove = true;
+
     void Update()
     {
-        float deltaTime = Time.deltaTime;
+        if (canMove)
+        {
+            float deltaTime = Time.deltaTime;
 
-        Vector2 newpos = new Vector2(transform.position.x, transform.position.y);
+            Vector2 newpos = new Vector2(transform.position.x, transform.position.y);
 
-        newpos.y += (mapSize / timeToFill_) * deltaTime;
+            newpos.y += (mapSize / timeToFill_) * deltaTime;
 
-        this.transform.position = newpos;
+            this.transform.position = newpos;
+        }
     }
 
     public void SetMapSize(float size)
@@ -33,5 +38,10 @@ public class ChampuController : MonoBehaviour
     public void SetStartingPos(Vector2 newpos)
     {
         transform.position = newpos;
+    }
+
+    public void EndLevel()
+    {
+        canMove = false;
     }
 }

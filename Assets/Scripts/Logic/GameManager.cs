@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public PauseMenu pauseMenu;
 
     private PlayerInput player;
+    private ChampuController champu;
 
     int hairsCollected;
     int louseAccumulated;
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
         }
 
         player = GameObject.Find("Player").GetComponent<PlayerInput>();
+        champu = GameObject.Find("Champu").GetComponent<ChampuController>();
     }
 
     private void Update()
@@ -85,7 +87,8 @@ public class GameManager : MonoBehaviour
 
     public void EndLevel()
     {
-        player.EndLevel();
+        //player.EndLevel();
+        champu.EndLevel();
     }
 
     private int biome_ = 0;

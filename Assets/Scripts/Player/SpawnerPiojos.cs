@@ -5,8 +5,8 @@ using UnityEngine;
 public class SpawnerPiojos : MonoBehaviour
 {
     public GameObject piojoPrefab;
+    public GameObject piojoThrowPrefab;
     private Queue<GameObject> piojosPool_;
-
     private void Start()
     {
         piojosPool_ = new Queue<GameObject>();
@@ -17,5 +17,17 @@ public class SpawnerPiojos : MonoBehaviour
         GameObject newpiojo = Instantiate(piojoPrefab, transform);
         newpiojo.GetComponent<WanderAround>().SetObjectToWander(gameObject);
         piojosPool_.Enqueue(newpiojo);
+    }
+
+    //Devuelve true si hay piojos que lanzar, y pierde uno
+    public GameObject ThrowPiojo()
+    {
+        if (piojosPool_.Count > 0)
+        {
+            GameObject piojo = piojosPool_.Dequeue();
+            Destroy(piojo);
+            return piojoThrowPrefab;
+        }
+        else return null;
     }
 }
