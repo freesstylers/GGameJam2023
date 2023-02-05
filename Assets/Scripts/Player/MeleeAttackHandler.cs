@@ -74,7 +74,7 @@ public class AttackHandler : MonoBehaviour
             if (dead[i].HP <= 0)
             {
                 inRange.Remove(dead[i]);
-                dead[i].Die(_player);
+                dead[i].Die(_player.transform);
                 dead[i] = null;
             }
         }

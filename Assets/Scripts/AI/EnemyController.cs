@@ -14,6 +14,16 @@ public class EnemyController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Chiquitin")
+        {
+            Damage(1);
+            Destroy(collision.gameObject);
+            if (HP <= 0) Die(collision.transform);
+        }
+    }
+
     public void Damage(float dmg)
     {
         HP -= dmg;
@@ -47,9 +57,9 @@ public class EnemyController : MonoBehaviour
         GetComponent<SpriteRenderer>().color = realC;
     }
 
-    public virtual void Die(PlayerInput player)
+    public virtual void Die(Transform dir)
     {
-        Vector2 deathDir = (transform.position - player.gameObject.transform.position).normalized;
+        Vector2 deathDir = (transform.position - dir.position).normalized;
         GetComponent<EnemyDeath>().SendFlyingAndDie(deathDir);
     }
 }

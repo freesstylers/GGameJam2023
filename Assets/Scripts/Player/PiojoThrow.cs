@@ -23,13 +23,4 @@ public class PiojoThrow : MonoBehaviour
     {
         direction = newdir;
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "Enemy")
-        {
-            collision.gameObject.GetComponent<EnemyController>().Damage(damageToEnemies);
-            Destroy(gameObject);
-        }
-    }
 }

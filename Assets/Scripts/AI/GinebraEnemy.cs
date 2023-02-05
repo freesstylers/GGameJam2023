@@ -6,10 +6,10 @@ public class GinebraEnemy : EnemyController
 {
     public float HealthUp;
 
-    public override void Die(PlayerInput player)
+    public override void Die(Transform player)
     {
         base.Die(player);
 
-        player.TakeDamage(-HealthUp);
+        player.GetComponent<PlayerInput>().TakeDamage(-HealthUp);
     }
 }

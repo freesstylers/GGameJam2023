@@ -204,7 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 3
   dmgSound: {fileID: 8300000, guid: c8d698086b678f74db90649c78b0f3d5, type: 3}
-  detectDistance: 5
+  detectDistance: 3
 --- !u!58 &1695215939979042129
 CircleCollider2D:
   m_ObjectHideFlags: 0
