@@ -63,10 +63,9 @@ public class GameManager : MonoBehaviour
             currentDifficulty--;
     }
 
-    public void GoToPlayScene(int biome)
+    public void SetBiome(int biome)
     {
         biome_ = biome;
-        SceneManager.LoadScene("ZonaScene");   
     }
 
     public int GetBiome()

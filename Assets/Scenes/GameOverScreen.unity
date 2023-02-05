@@ -354,6 +354,10 @@ PrefabInstance:
       value: Button (1)
       objectReference: {fileID: 0}
     - target: {fileID: 2453142426933825967, guid: 3d9ecf0306a9019488985ece643741f9, type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: -2430325723594440145, guid: 7ccd32d06ddca804cb254f67d1e4db47, type: 3}
+    - target: {fileID: 2453142426933825967, guid: 3d9ecf0306a9019488985ece643741f9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 5
       objectReference: {fileID: 0}
@@ -399,6 +403,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6dd3c2cae00f5a44fbdd9cef6bf6457f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &369179367 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2453142426933825967, guid: 3d9ecf0306a9019488985ece643741f9, type: 3}
+  m_PrefabInstance: {fileID: 369179363}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369179365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &620667597
@@ -734,6 +749,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hairs: {fileID: 1805537661}
   _pipis: {fileID: 2019693899}
+  backToMenu: {fileID: 369179367}
 --- !u!1 &1610880709
 GameObject:
   m_ObjectHideFlags: 0

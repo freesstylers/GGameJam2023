@@ -24,6 +24,7 @@ public class SceneController : MonoBehaviour
         switch (s)
         {
             case States.GameState:
+                GameManager.instance.SetBiome(Random.Range(0, 4));
                 break;
             case States.EventState:
                 break;

@@ -296,6 +296,14 @@ PrefabInstance:
       propertyPath: camera_
       value: 
       objectReference: {fileID: 508110480}
+    - target: {fileID: 2908618908241987164, guid: f34842fd500ce0d49a9999090d1eb95a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2908618908241987164, guid: f34842fd500ce0d49a9999090d1eb95a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 9056925263526597500, guid: f34842fd500ce0d49a9999090d1eb95a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
