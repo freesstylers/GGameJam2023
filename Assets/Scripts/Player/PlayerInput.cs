@@ -9,6 +9,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField]
     bool DEBUG_INPUT = false;
 
+    [SerializeField]
     float HP;
     public float MAX_HP;
     public float Speed = 1.0F;
@@ -264,11 +265,14 @@ public class PlayerInput : MonoBehaviour
         {
             HP = MAX_HP;
         }
-        else
+        else if(!isAnimating)
         {
+            isAnimating = true;
             StartCoroutine(HitAnim(0.1f, MathF.Sign(dmg)));
         }
     }
+
+    bool isAnimating = false;
 
     IEnumerator HitAnim(float t, int sign)
     {
@@ -291,6 +295,7 @@ public class PlayerInput : MonoBehaviour
         }
 
         GetComponent<SpriteRenderer>().color = realC;
+        isAnimating = false;
     }
 
     public void Die()
