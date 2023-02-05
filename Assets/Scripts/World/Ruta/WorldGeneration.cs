@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
- 
+using Rewired;
 
 public class WorldGeneration : MonoBehaviour
 {
@@ -13,13 +13,15 @@ public class WorldGeneration : MonoBehaviour
     public Vector2 cuadrado_;
     [Range(1, 3)] public int maxNodos_;
 
-    public RuteNodes prefab_; 
+    public RuteNodes prefab_;
     public RuteNodes ini_;
     public RuteNodes fin_;
 
     public List<BaseEvent> eventos_;
     public List<int> eventosAp_;
     public BaseEvent eventoTienda_;
+
+    public NodeMovement nodeMov;
 
     private int[][] logicMatrix;
     private List<List<RuteNodes>> gm = new List<List<RuteNodes>>();
@@ -29,7 +31,7 @@ public class WorldGeneration : MonoBehaviour
     {
         gm.ForEach(x => x = new List<RuteNodes>());
         CreateMap();
-       
+
     }
 
     private void InitMatrix()
@@ -70,6 +72,14 @@ public class WorldGeneration : MonoBehaviour
 
     public void Update()
     {
+        /*if (ReInput.players.Players[0].GetButtonDown("ButtonA"))
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                //EventSystem.current.currentInputModule.GetComponent<RuteNodes>().SetFollowingEvents(GetRandomEvent(), i);
+            }
+        }*/
+
 #if DEBUG
         if (Input.GetKeyUp(KeyCode.Space))
         {
@@ -157,7 +167,7 @@ public class WorldGeneration : MonoBehaviour
             ok[1] = logicMatrix[level + 1][i] == 1;
             if (i > 0)
                 ok[0] = logicMatrix[level + 1][i - 1] == 1;
-            if (i < vNiveles_-1)
+            if (i < vNiveles_ - 1)
                 ok[2] = logicMatrix[level + 1][i + 1] == 1;
 
             isOk = isOk && (ok[0] || ok[1] || ok[2]);
@@ -198,7 +208,7 @@ public class WorldGeneration : MonoBehaviour
         {
             for (int j = 0; j < vNiveles_; j++)
             {
-                if(logicMatrix[i][j] == 1)
+                if (logicMatrix[i][j] == 1)
                 {
                     LinkNextNodes(j, i);
                     LinkPrevNodes(j, i);
@@ -230,7 +240,7 @@ public class WorldGeneration : MonoBehaviour
             Debug.Log(y + "-" + x);
             throw e;
         }
-        
+
     }
 
     private void LinkPrevNodes(int x, int y)
@@ -263,7 +273,7 @@ public class WorldGeneration : MonoBehaviour
     {
         int f = 0, n = 0;
         for (int i = 0; i < vNiveles_; i++)
-        {            
+        {
             if (logicMatrix[0][i] == 1)
             {
                 ini_.SetNextNode(gm[0][i], n);
@@ -278,7 +288,7 @@ public class WorldGeneration : MonoBehaviour
         }
     }
 
-    
+
 
     #endregion
     #region EVENTS
@@ -319,4 +329,9 @@ public class WorldGeneration : MonoBehaviour
     }
 
     #endregion
+
+    private void OnEnable()
+    {
+        EventSystem.current.SetSelectedGameObject(nodeMov.currentNode.gameObject);
+    }
 }

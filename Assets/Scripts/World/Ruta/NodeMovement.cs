@@ -6,10 +6,9 @@ using Rewired;
 
 public class NodeMovement : MonoBehaviour
 {
-    //public WorldGeneration map_;
-
+    public WorldGeneration map_;
     public RuteNodes currentNode;
-
+    public EventHandler evH;
 
     private void Update()
     {
@@ -21,6 +20,7 @@ public class NodeMovement : MonoBehaviour
                 currentNode = EventSystem.current.currentSelectedGameObject.GetComponent<RuteNodes>();
                 currentNode?.CleanPrev();
                 currentNode.SetNextNavigation();
+                evH.SetEvento(map_.GetRandomEvent());
                 GameManager.instance.levelLoader.LoadTransition(States.GameState);
 
             }

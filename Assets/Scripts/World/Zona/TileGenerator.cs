@@ -21,7 +21,7 @@ public class TileGenerator : MonoBehaviour
     public PlayerInput player_;
     public FinishZone finish_;
 
-    private void Start()
+    private void OnEnable()
     {
         biomaType = GameManager.instance.GetBiome();
         tileMap_ = GetComponent<Tilemap>();
@@ -42,7 +42,10 @@ public class TileGenerator : MonoBehaviour
         finish_.SetPosition(map_.position.y + map_.rect.height / 2 - map_.rect.height / 10);
 
         GenerateTiles();
+        
     }
+    
+    
 
     //Llenamos el tilemap con los tiles de piel caminables
     public void GenerateTiles()

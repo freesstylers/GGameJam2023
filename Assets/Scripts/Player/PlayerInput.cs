@@ -295,6 +295,7 @@ public class PlayerInput : MonoBehaviour
         animator.SetTrigger("EndLevel");
 
         StartCoroutine(Yippee()); 
+
     }
 
     IEnumerator Yippee()
@@ -309,5 +310,7 @@ public class PlayerInput : MonoBehaviour
         }
 
         GameManager.instance.levelLoader.LoadTransition(States.EventState);
+
+       
     }
 }
