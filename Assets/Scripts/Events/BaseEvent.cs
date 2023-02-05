@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class BaseEvent : MonoBehaviour
 {
     public Button button;
     public TMPro.TextMeshProUGUI text;
-    // Start is called before the first frame update
+
+    public void Start()
+    {
+        EventSystem.current.SetSelectedGameObject(button.gameObject);
+    }
 
     public void activateText()
     {

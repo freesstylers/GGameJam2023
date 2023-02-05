@@ -17,7 +17,7 @@ public class RuteNodes : MonoBehaviour
     private RuteNodes[] prevNodes = new RuteNodes[3];
 
 
-    #region Setters
+    #region SETTERS
     public void SetNextNode(RuteNodes node, int n = 1)
     {
         nextNodes[n] = node;
@@ -48,6 +48,12 @@ public class RuteNodes : MonoBehaviour
     {
         if(gameEvent_ == null)
             gameEvent_ = b;
+    }
+
+    public void SetFollowingEvents(BaseEvent b, int i)
+    {
+        if (nextNodes[i] != null)
+            nextNodes[i].SetEvent(b);
     }
 
     #endregion

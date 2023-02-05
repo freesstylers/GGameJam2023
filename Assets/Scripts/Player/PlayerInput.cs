@@ -26,11 +26,7 @@ public class PlayerInput : MonoBehaviour
     Transform pivot;
 
     [SerializeField]
-    Collider2D interactableCollider;
-    [SerializeField]
-    ContactFilter2D interactableContactFilter;
-    [SerializeField]
-    List<Collider2D> interactableCollidedColliders;
+    InteractableCollider interactableCollider;
 
     public float deadZone = 0.25f;
     // Start is called before the first frame update
@@ -39,7 +35,6 @@ public class PlayerInput : MonoBehaviour
         _attackArea.Initialize(this);
         animator = GetComponent<Animator>();
         pivot = transform.GetChild(0);
-        interactableContactFilter.NoFilter();
     }
 
     // Update is called once per frame
@@ -71,14 +66,9 @@ public class PlayerInput : MonoBehaviour
             }
             if (Rewired.ReInput.players.Players[0].GetButtonDown("ButtonB"))
             {
-                interactableCollider.OverlapCollider(interactableContactFilter, interactableCollidedColliders);
-
-                foreach (Collider2D col in interactableCollidedColliders)
+                if(interactableCollider.inRange.Count > 0)
                 {
-                    if (col.gameObject.tag == "Hair")
-                    {
-                        Interact(col);
-                    }
+                    Interact(interactableCollider.inRange[0]);
                 }
             }
             if (Rewired.ReInput.players.Players[0].GetButtonDown("ButtonX"))
@@ -134,18 +124,18 @@ public class PlayerInput : MonoBehaviour
             piojo.GetComponent<PiojoThrow>().SetDirection(_lookDir);
         }
     }
-    void Interact(Collider2D col)
+    void Interact(GameObject g)
     {
-        if (col != null)
+        if (g != null)
         {
             _digging = true;
             animator.SetTrigger("Action");
 
-            StartCoroutine(StopDig(col));
+            StartCoroutine(StopDig(g));
         }
     }
 
-    IEnumerator StopDig(Collider2D col)
+    IEnumerator StopDig(GameObject g)
     {
         yield return new WaitForEndOfFrame();
 
@@ -158,7 +148,8 @@ public class PlayerInput : MonoBehaviour
 
         if(_digging)
         {
-            col.gameObject.GetComponent<Pelo>().Excavate(spawner);
+            interactableCollider.inRange.Remove(g);
+            g.GetComponent<Pelo>().Excavate(spawner);
             _digging = false;
         }
     }
@@ -304,6 +295,7 @@ public class PlayerInput : MonoBehaviour
         animator.SetTrigger("EndLevel");
 
         StartCoroutine(Yippee()); 
+
     }
 
     IEnumerator Yippee()
@@ -318,5 +310,7 @@ public class PlayerInput : MonoBehaviour
         }
 
         GameManager.instance.levelLoader.LoadTransition(States.EventState);
+
+       
     }
 }

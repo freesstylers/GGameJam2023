@@ -28,7 +28,7 @@ public class BulletController : EnemyAttack
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.tag == "Player")
         {
             collision.gameObject.GetComponent<PlayerInput>().TakeDamage(Damage);
             Destroy(gameObject);

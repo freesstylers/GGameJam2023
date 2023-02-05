@@ -7,8 +7,9 @@ public class BetEvent : BaseEvent
     [SerializeField]
     int chance;
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
+        base.Start();
         text.text = "Wanna try your luck? Just give me a hand. Win or lose, it is fun all the same!";
 
         button.onClick.RemoveAllListeners();
@@ -24,7 +25,7 @@ public class BetEvent : BaseEvent
             aux = Random.Range(0, 100);
 
             button.onClick.RemoveAllListeners();
-
+            text.text = "Ok, we are gonna play with louse";
             if (aux > chance)
             {
                 button.onClick.AddListener(functionMoreLouse);
@@ -37,8 +38,8 @@ public class BetEvent : BaseEvent
         else //Hair
         {
             aux = Random.Range(0, 100);
-
             button.onClick.RemoveAllListeners();
+            text.text = "Ok, we are gonna play with hair";
 
             if (aux > chance)
             {
@@ -57,7 +58,11 @@ public class BetEvent : BaseEvent
         text.text = "R.I.P. Bozo";
 
         button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(base.deactivateText);
+        button.onClick.AddListener(() =>
+        {
+            base.deactivateText();
+            NextState();
+        });
     }
 
     void functionMinusHair()
@@ -66,7 +71,11 @@ public class BetEvent : BaseEvent
         text.text = "Too much H&S";
 
         button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(base.deactivateText);
+        button.onClick.AddListener(() =>
+        {
+            base.deactivateText();
+            NextState();
+        });
     }
 
     void functionMoreLouse()
@@ -75,7 +84,13 @@ public class BetEvent : BaseEvent
         text.text = "Congrats! You stink";
 
         button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(base.deactivateText);
+        button.onClick.AddListener(() => 
+        {
+            base.deactivateText();
+            NextState();
+        });
+
+        
     }
 
     void functionMoreHair()
@@ -84,6 +99,17 @@ public class BetEvent : BaseEvent
         text.text = "Puberty!";
 
         button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(base.deactivateText);
+        button.onClick.AddListener(() =>
+        {
+            base.deactivateText();
+            NextState();
+        });
+    }
+
+    private void NextState()
+    {
+        GameManager.instance.levelLoader.LoadTransition(States.RutaState);
+        Destroy(button);
+        Destroy(gameObject);
     }
 }
