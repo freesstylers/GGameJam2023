@@ -34,8 +34,11 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         }
 
-        player = GameObject.Find("Player").GetComponent<PlayerInput>();
-        champu = GameObject.Find("Champu").GetComponent<ChampuController>();
+        if (SceneController.instance != null && SceneController.instance.currentState == States.GameState)
+        {
+            player = GameObject.Find("Player").GetComponent<PlayerInput>();
+            champu = GameObject.Find("Champu").GetComponent<ChampuController>();
+        }
     }
 
     private void Update()

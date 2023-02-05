@@ -9,7 +9,9 @@ public class PlayerInput : MonoBehaviour
     [SerializeField]
     bool DEBUG_INPUT = false;
 
-    public float HP;
+    [SerializeField]
+    float HP;
+    public float MAX_HP;
     public float Speed = 1.0F;
     public float AttackDuration = 1.0F;
 
@@ -35,6 +37,8 @@ public class PlayerInput : MonoBehaviour
         _attackArea.Initialize(this);
         animator = GetComponent<Animator>();
         pivot = transform.GetChild(0);
+
+        HP = MAX_HP;
     }
 
     // Update is called once per frame
@@ -257,15 +261,25 @@ public class PlayerInput : MonoBehaviour
         {
             Die();
         }
-        else
+        else if(HP > MAX_HP)
         {
-            StartCoroutine(HitAnim(0.1f));
+            HP = MAX_HP;
+        }
+        else if(!isAnimating)
+        {
+            isAnimating = true;
+            StartCoroutine(HitAnim(0.1f, MathF.Sign(dmg)));
         }
     }
 
-    IEnumerator HitAnim(float t)
+    bool isAnimating = false;
+
+    IEnumerator HitAnim(float t, int sign)
     {
-        Color c = new Color(1, 0, 0);
+        Color c = Color.red;
+
+        if (sign < 0)
+            c = Color.green;
 
         Color realC = new Color(1, 1, 1);
 
@@ -281,6 +295,7 @@ public class PlayerInput : MonoBehaviour
         }
 
         GetComponent<SpriteRenderer>().color = realC;
+        isAnimating = false;
     }
 
     public void Die()

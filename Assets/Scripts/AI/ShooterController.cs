@@ -14,6 +14,7 @@ public class ShooterController : EnemyController
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 

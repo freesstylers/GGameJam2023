@@ -62,7 +62,6 @@ public class AttackHandler : MonoBehaviour
                     Debug.Log("HIT!\n NAME: " + e.gameObject.name + " |||| TAG: " + e.gameObject.tag);
 
                 e.Damage(damage);
-
                 if (e.HP > 0)
                     attacked.Add(e);
                 else
@@ -75,7 +74,7 @@ public class AttackHandler : MonoBehaviour
             if (dead[i].HP <= 0)
             {
                 inRange.Remove(dead[i]);
-                dead[i].Die();
+                dead[i].Die(_player);
                 dead[i] = null;
             }
         }
