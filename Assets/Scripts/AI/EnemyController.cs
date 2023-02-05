@@ -36,8 +36,9 @@ public class EnemyController : MonoBehaviour
     GetComponent<SpriteRenderer>().color = realC;
 }
 
-public void Die()
+public void Die(PlayerInput player)
     {
-        Destroy(gameObject);
+        Vector2 deathDir = (transform.position - player.gameObject.transform.position).normalized;
+        GetComponent<EnemyDeath>().SendFlyingAndDie(deathDir);
     }
 }

@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 2957781810828234884}
   - component: {fileID: 5050884444429551597}
   - component: {fileID: 735789830756509313}
+  - component: {fileID: 7767578435397373958}
   m_Layer: 0
   m_Name: ChargerCharging1
   m_TagString: Untagged
@@ -185,6 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cca18b1636237e48888a8016ca5e7f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HP: 5
   chargeDistance: 2
   chargeSpeed: 1
   chargeWindup: 1
@@ -239,3 +241,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7767578435397373958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5170087086593185734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc2e8a75673e9f144889ae346228b103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flySpeed: 6
+  flyForce: 3
+  deathTime: 3
+  timer: 0

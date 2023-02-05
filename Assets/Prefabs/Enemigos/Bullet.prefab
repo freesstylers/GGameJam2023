@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7387070280770856460}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.0222573, y: 0.8110753, z: 0}
+  m_LocalPosition: {x: -0.018446743, y: -17.295603, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -98,9 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22bbacde25089de4895c1e2cbaf17850, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 1
+  Damage: 0
   bulletSpeed: 1
-  deathTimer: 0.5
+  deathTimer: 3
 --- !u!58 &2248656062168525516
 CircleCollider2D:
   m_ObjectHideFlags: 0
