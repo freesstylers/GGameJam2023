@@ -1,3 +1,4 @@
+using Rewired.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,6 +34,29 @@ public class ChargerController : EnemyController
             {
                 detected = true;
                 chargeObjective = target.transform.position + (target.transform.position - transform.position).normalized * chargeDistance;
+
+
+                Vector2 _lookDir = ((Vector3)chargeObjective - transform.position).normalized;
+
+                Animator animator = GetComponent<Animator>();
+
+                if (_lookDir.y > 0)
+                {
+                    animator.SetInteger("Dir", (int)Look.UP);
+                }
+                else if (_lookDir.y < 0)
+                {
+                    animator.SetInteger("Dir", (int)Look.DOWN);
+                }
+                else if (_lookDir.x < 0)
+                {
+                    animator.SetInteger("Dir", (int)Look.LEFT);
+                }
+                else if (_lookDir.x > 0)
+                {
+                    animator.SetInteger("Dir", (int)Look.RIGHT);
+                }
+
             }
         }
         else
@@ -46,6 +70,7 @@ public class ChargerController : EnemyController
         chargeTimer += Time.deltaTime;
         if (chargeTimer > chargeWindup)
         {
+
             resetTimer += Time.deltaTime;
             transform.position = Vector3.Lerp(transform.position, chargeObjective, Time.deltaTime * chargeSpeed);
             if (transform.position == target.position || resetTimer > resetTime)
@@ -53,6 +78,10 @@ public class ChargerController : EnemyController
                 chargeTimer = 0.0f;
                 resetTimer = 0.0f;
                 detected = false;
+
+                Animator animator = GetComponent<Animator>();
+
+                animator.SetInteger("Dir", -1);
             }
         }
     }
