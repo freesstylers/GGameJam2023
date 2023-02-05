@@ -14,9 +14,8 @@ public class GameManager : MonoBehaviour
 
     private PlayerInput player;
     private ChampuController champu;
-
-    int hairsCollected;
-    int louseAccumulated;
+    public int hairsCollected;
+    public int louseAccumulated;
 
     enum Difficulty { Bald, Normal, Hippie };
 
@@ -68,10 +67,9 @@ public class GameManager : MonoBehaviour
             currentDifficulty--;
     }
 
-    public void GoToPlayScene(int biome)
+    public void SetBiome(int biome)
     {
         biome_ = biome;
-        SceneManager.LoadScene("ZonaScene");   
     }
 
     public int GetBiome()
@@ -89,7 +87,9 @@ public class GameManager : MonoBehaviour
     {
         //player.EndLevel();
         champu.EndLevel();
+        //ChangeState(States.ResumeAfterG);
     }
+
 
     private int biome_ = 0;
 }

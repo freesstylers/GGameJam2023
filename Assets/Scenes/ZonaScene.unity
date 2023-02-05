@@ -507,9 +507,11 @@ GameObject:
   - component: {fileID: 1110574999}
   - component: {fileID: 1110574998}
   - component: {fileID: 1110574997}
+  - component: {fileID: 1110575001}
+  - component: {fileID: 1110575002}
   m_Layer: 0
   m_Name: Champu
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -572,7 +574,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -606,6 +608,57 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -30}
   m_SizeDelta: {x: 30, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!68 &1110575001
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110574996}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -15, y: 0}
+  - {x: -14.992757, y: 6.26363}
+  - {x: -12.909671, y: 6.7591076}
+  - {x: -10.027705, y: 6.402115}
+  - {x: -7.6801076, y: 5.8948536}
+  - {x: -5.715419, y: 6.058172}
+  - {x: -2.540726, y: 6.8538704}
+  - {x: -0.03734374, y: 7.024952}
+  - {x: 2.291541, y: 6.9105473}
+  - {x: 4.8401165, y: 6.348421}
+  - {x: 7.041045, y: 5.9062157}
+  - {x: 9.186489, y: 6.1741066}
+  - {x: 11.325373, y: 6.6815434}
+  - {x: 13.104858, y: 6.822632}
+  - {x: 15.023567, y: 6.2549896}
+  - {x: 15.024119, y: -8.45101}
+  - {x: -14.959578, y: -8.460234}
+  - {x: -14.991092, y: 0.0144786835}
+  m_AdjacentStartPoint: {x: -14.74, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!114 &1110575002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110574996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4fb8066de1eca343883eba063a57929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 999999
 --- !u!1 &1338544966
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,6 +962,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3825912105000428797, guid: 93de7beb09c541f4a9d9359e650ba24a, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6687865481167150091, guid: 93de7beb09c541f4a9d9359e650ba24a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

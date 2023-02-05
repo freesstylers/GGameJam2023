@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -8,8 +10,12 @@ public class PauseMenu : MonoBehaviour
     GameObject settingsMenuGameObject;
     [SerializeField]
     GameObject containerGameObject;
+    
+    [SerializeField]
+    GameObject continueButton;
 
     bool settingsOpened = false;
+    bool containerOpened = false;
 
     public void TogglePause()
     {
@@ -21,9 +27,14 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
-        Time.timeScale = 0;
+        if (SceneController.instance.currentState == States.GameState)
+        {
+            Time.timeScale = 0;
 
-        Settings();
+            Container();
+
+            EventSystem.current.SetSelectedGameObject(continueButton);
+        }
     }
 
     public void BackToGame()
@@ -31,7 +42,7 @@ public class PauseMenu : MonoBehaviour
         //Unpause
         Time.timeScale = 1;
 
-        Settings();
+        Container();
     }
 
     public void ToMainMenu()
@@ -44,6 +55,21 @@ public class PauseMenu : MonoBehaviour
         Application.Quit();
     }
 
+    public void Container()
+    {
+        containerOpened = !containerOpened;
+
+        if (containerOpened)
+        {
+            containerGameObject.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(continueButton);
+        }
+        else
+        {
+            containerGameObject.SetActive(false);
+        }
+    }
+
     public void Settings()
     {
         settingsOpened = !settingsOpened;
@@ -52,6 +78,7 @@ public class PauseMenu : MonoBehaviour
         {
             containerGameObject.SetActive(false);
             settingsMenuGameObject.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(settingsMenuGameObject.GetComponentInChildren<Button>().gameObject);
         }
         else
         {

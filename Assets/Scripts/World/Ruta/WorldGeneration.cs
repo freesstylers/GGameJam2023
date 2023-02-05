@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+ 
 
 public class WorldGeneration : MonoBehaviour
 {
@@ -14,15 +17,19 @@ public class WorldGeneration : MonoBehaviour
     public RuteNodes ini_;
     public RuteNodes fin_;
 
-    public List<GameObject> eventos_;
+    public List<BaseEvent> eventos_;
+    public List<int> eventosAp_;
+    public BaseEvent eventoTienda_;
 
     private int[][] logicMatrix;
     private List<List<RuteNodes>> gm = new List<List<RuteNodes>>();
+    private int maxId;
 
     public void Start()
     {
         gm.ForEach(x => x = new List<RuteNodes>());
         CreateMap();
+       
     }
 
     private void InitMatrix()
@@ -66,6 +73,7 @@ public class WorldGeneration : MonoBehaviour
 #if DEBUG
         if (Input.GetKeyUp(KeyCode.Space))
         {
+            Debug.Log(EventSystem.current.currentSelectedGameObject.name);
             CreateMap();
             /*gm.ForEach(x => x.ForEach(x => Destroy(x)));
             gm.ForEach(x => x.Clear());
@@ -88,10 +96,17 @@ public class WorldGeneration : MonoBehaviour
         gm.Clear();
         gm = CreateLevel();
         LinkNodes();
+
+        //Set Navigation
+        ini_.SetNextNavigation();
+        //gm.ForEach(x => x.ForEach(x => SetNodeNavigation(x)));
+        EventSystem.current.SetSelectedGameObject(ini_.gameObject);
+        SetTiendas(2);
     }
 
     private List<List<RuteNodes>> CreateLevel()
     {
+        int id = 0;
         List<List<RuteNodes>> gg = new List<List<RuteNodes>>();
         for (int i = 0; i < hNiveles_; i++)
         {
@@ -105,6 +120,9 @@ public class WorldGeneration : MonoBehaviour
                     float y = (i - ((hNiveles_ - 1) / 2f)) * cuadrado_.y;
                     y = Random.Range(-desfase_, desfase_) + y;
                     RuteNodes obj = Instantiate(prefab_.gameObject, gameObject.transform).GetComponent<RuteNodes>();
+                    obj.id_ = id;
+                    obj.lvl_ = i;
+                    id++;
                     obj.transform.position = new Vector2(x, y);
                     g.Add(obj);
                 }
@@ -113,6 +131,8 @@ public class WorldGeneration : MonoBehaviour
             }
             gg.Add(g);
         }
+
+        maxId = id;
         return gg;
     }
 
@@ -254,6 +274,46 @@ public class WorldGeneration : MonoBehaviour
             {
                 fin_.SetPrevNode(gm[hNiveles_ - 1][i], f);
                 f++;
+            }
+        }
+    }
+
+    
+
+    #endregion
+    #region EVENTS
+    public BaseEvent GetRandomEvent()
+    {
+        bool isOk = false;
+        BaseEvent e = null;
+
+        do
+        {
+            int r = Random.Range(0, eventos_.Count);
+            if (eventosAp_[r] > 0)
+            {
+                e = eventos_[r];
+                eventosAp_[r]--;
+                isOk = true;
+            }
+
+        } while (!isOk);
+
+        return e;
+    }
+
+    private void SetTiendas(int n)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            int r = Random.Range(0, maxId);
+            foreach (List<RuteNodes> g in gm)
+            {
+                foreach (RuteNodes rn in g)
+                {
+                    if (rn != null && rn.id_ == r)
+                        rn.SetEvent(eventoTienda_);
+                }
             }
         }
     }

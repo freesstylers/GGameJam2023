@@ -9,6 +9,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField]
     bool DEBUG_INPUT = false;
 
+    public float HP;
     public float Speed = 1.0F;
     public float AttackDuration = 1.0F;
 
@@ -38,6 +39,7 @@ public class PlayerInput : MonoBehaviour
         _attackArea.Initialize(this);
         animator = GetComponent<Animator>();
         pivot = transform.GetChild(0);
+        interactableContactFilter.NoFilter();
     }
 
     // Update is called once per frame
@@ -45,7 +47,11 @@ public class PlayerInput : MonoBehaviour
     {
         if (_digging)
         {
-
+            if (Rewired.ReInput.players.Players[0].GetButtonUp("ButtonB"))
+            {
+                _digging = false;
+                animator.SetTrigger("StopAction");
+            }
         }
 
         else
@@ -95,16 +101,27 @@ public class PlayerInput : MonoBehaviour
         animator.SetTrigger("Attack");
         _attacking = true;
 
-        _attackArea.gameObject.SetActive(true);
+        _attackArea.Attack();
 
         //TEMP!!!
         //DESACTIVAR COLLIDER CUANDO ANIMACI�N? TIEMPO?
-        Invoke("StopAttack", AttackDuration);
+        StartCoroutine(StopAttack());
     }
 
-    void StopAttack()
+    
+
+    IEnumerator StopAttack()
     {
-        _attackArea.gameObject.SetActive(false);
+        yield return new WaitForEndOfFrame();
+
+        string animName = animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+
+        while(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == animName)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        _attackArea.StopAttack();
         _attacking = false;
     }
 
@@ -117,11 +134,6 @@ public class PlayerInput : MonoBehaviour
             piojo.GetComponent<PiojoThrow>().SetDirection(_lookDir);
         }
     }
-
-    [SerializeField]
-    float timeToDig = 1.5f;
-
-    float currentTimeToDig = 0.0f;
     void Interact(Collider2D col)
     {
         if (col != null)
@@ -129,47 +141,25 @@ public class PlayerInput : MonoBehaviour
             _digging = true;
             animator.SetTrigger("Action");
 
-            if (_lookDir.y > deadZone)
-            {
-                pivot.localEulerAngles = new Vector3(0, 0, 0);
-                currentTimeToDig += Time.deltaTime;
-            }
-            else if (_lookDir.y <= -deadZone)
-            {
-                pivot.localEulerAngles = new Vector3(0, 0, 180);
-                currentTimeToDig += Time.deltaTime;
-            }
-            else if (_lookDir.x <= -deadZone)
-            {
-                pivot.localEulerAngles = new Vector3(0, 0, 90);
-                currentTimeToDig += Time.deltaTime;
-            }
-            else if (_lookDir.x > deadZone)
-            {
-                pivot.localEulerAngles = new Vector3(0, 0, 270);
-                currentTimeToDig += Time.deltaTime;
-            }
-            else
-            {
-                currentTimeToDig = 0.0f;
-            }
+            StartCoroutine(StopDig(col));
+        }
+    }
 
-            if (currentTimeToDig > timeToDig)
-            {
-                animator.Play("piojoseDown");
-                //col.gameObject.GetComponent<Animator>().Play("SacarPelo");
-                int piojosCount = col.gameObject.GetComponent<Pelo>().GetPiojos();
-                Destroy(col.gameObject, 1f);
-                col = null;
-                currentTimeToDig = 0.0f;
+    IEnumerator StopDig(Collider2D col)
+    {
+        yield return new WaitForEndOfFrame();
 
-                GameManager.instance.AddHair(1, piojosCount);
-                for(int i = 0; i < piojosCount; i++)
-                {
-                    spawner.SpawnPiojo();
-                }
-                Debug.Log("A�adidos un pelo y " + piojosCount + " piojos");
-            }
+        string animName = animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+
+        while (animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == animName && _digging)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        if(_digging)
+        {
+            col.gameObject.GetComponent<Pelo>().Excavate(spawner);
+            _digging = false;
         }
     }
 
@@ -266,5 +256,67 @@ public class PlayerInput : MonoBehaviour
     public void SetStartingPosition(float y)
     {
         transform.position = new Vector3(transform.position.x, y, 0);
+    }
+
+    public void TakeDamage(float dmg)
+    {
+        HP -= dmg;
+
+        if(HP <= 0)
+        {
+            Die();
+        }
+        else
+        {
+            StartCoroutine(HitAnim(0.1f));
+        }
+    }
+
+    IEnumerator HitAnim(float t)
+    {
+        Color c = new Color(1, 0, 0);
+
+        Color realC = new Color(1, 1, 1);
+
+        float timer = 0.0f;
+
+        while(timer < t)
+        {
+            GetComponent<SpriteRenderer>().color = Color.Lerp(c, realC, timer / t);
+
+            yield return new WaitForEndOfFrame();
+
+            timer += Time.deltaTime;
+        }
+
+        GetComponent<SpriteRenderer>().color = realC;
+    }
+
+    public void Die()
+    {
+        GameManager.instance.levelLoader.LoadScene("GameOverScreen");
+    }
+
+    public void EndLevel()
+    {
+        FindObjectOfType<ChampuController>().enabled = false;
+
+        animator.SetTrigger("EndLevel");
+
+        StartCoroutine(Yippee()); 
+    }
+
+    IEnumerator Yippee()
+    {
+        yield return new WaitForEndOfFrame();
+
+        string animName = animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+
+        while (animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == animName)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        GameManager.instance.levelLoader.LoadTransition(States.EventState);
     }
 }

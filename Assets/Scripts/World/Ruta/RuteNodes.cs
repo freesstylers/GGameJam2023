@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-enum Moves { Left, Top, Right };
+enum Moves { Left, Up, Right };
 
 public class RuteNodes : MonoBehaviour
 {
     public int id_;
+    public int lvl_;
     public GameObject camino_;
 
-    //public GameEvent gameEvent_;
+    public BaseEvent gameEvent_ = null;
 
     private RuteNodes[] nextNodes = new RuteNodes[3];
     private RuteNodes[] prevNodes = new RuteNodes[3];
+
 
     #region Setters
     public void SetNextNode(RuteNodes node, int n = 1)
@@ -40,8 +43,58 @@ public class RuteNodes : MonoBehaviour
     {
         prevNodes = nodes;
     }
-    #endregion
 
+    public void SetEvent(BaseEvent b)
+    {
+        if(gameEvent_ == null)
+            gameEvent_ = b;
+    }
+
+    #endregion
+    #region GETTER
+    public RuteNodes[] GetNextNodes() { return nextNodes; }
+    public RuteNodes[] GetPrevNodes() { return prevNodes; }
+    #endregion
+    #region NAVEGATION
+    public void SetNextNavigation()
+    {
+
+        Navigation n = GetComponent<Button>().navigation;
+        n.mode = Navigation.Mode.Explicit;
+        n.selectOnLeft = GetNextNodes()[(int)Moves.Left]?.GetComponent<Button>();
+        n.selectOnUp = GetNextNodes()[(int)Moves.Up]?.GetComponent<Button>();
+        n.selectOnRight =  GetNextNodes()[(int)Moves.Right]?.GetComponent<Button>();
+
+        foreach (RuteNodes nNodes in nextNodes)
+        {
+            if(nNodes != null)
+                nNodes.SetLastNavigation(this);
+        }
+
+        GetComponent<Button>().navigation = n;        
+    }
+
+    private void SetLastNavigation(RuteNodes lastNode)
+    {
+        Navigation n = GetComponent<Button>().navigation;
+        n.mode = Navigation.Mode.Explicit;
+        n.selectOnDown = lastNode.GetComponent<Button>();
+
+        GetComponent<Button>().navigation = n;
+    }
+
+    public void CleanPrev()
+    {
+        Navigation n = GetComponent<Button>().navigation;
+        n.mode = Navigation.Mode.None;
+        n.selectOnLeft = null;
+        n.selectOnUp = null;
+        n.selectOnRight = null;
+        n.selectOnDown = null;
+        GetComponent<Button>().navigation = n;
+    }
+
+    #endregion
     public bool CanTravel(RuteNodes node)
     {
         bool canTravel = false;
