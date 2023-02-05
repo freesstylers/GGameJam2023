@@ -20,7 +20,8 @@ public class NodeMovement : MonoBehaviour
                 currentNode = EventSystem.current.currentSelectedGameObject.GetComponent<RuteNodes>();
                 currentNode?.CleanPrev();
                 currentNode.SetNextNavigation();
-                evH.SetEvento(map_.GetRandomEvent());
+                currentNode.SetEvent(map_.GetRandomEvent());
+                evH.SetEvento(currentNode.gameEvent_);
                 GameManager.instance.levelLoader.LoadTransition(States.GameState);
 
             }

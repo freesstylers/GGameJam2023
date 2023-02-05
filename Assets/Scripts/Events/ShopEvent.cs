@@ -5,8 +5,9 @@ using UnityEngine;
 public class ShopEvent : BaseEvent
 {
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
+        base.Start();
         MusicManager.instance.PlayShopMusic();
     }
 

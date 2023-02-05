@@ -9,6 +9,7 @@ public class EarnEvent : BaseEvent
     // Start is called before the first frame update
     void Start()
     {
+        base.Start();
         text.text = "You have earned a Dogecoin. It has no value, so I will exchange it for something more useful for you";
         button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Ok... Thankfully I am not Elon Musk";
 
