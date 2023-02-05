@@ -62,4 +62,5 @@ public class EnemyController : MonoBehaviour
         Vector2 deathDir = (transform.position - dir.position).normalized;
         GetComponent<EnemyDeath>().SendFlyingAndDie(deathDir);
     }
+
 }
