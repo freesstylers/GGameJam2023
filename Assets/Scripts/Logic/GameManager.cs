@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         }
 
-        player = GameObject.Find("Player").GetComponent<PlayerInput>();
+        //player = GameObject.Find("Player").GetComponent<PlayerInput>();
     }
 
     private void Update()

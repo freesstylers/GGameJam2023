@@ -287,6 +287,6 @@ public class PlayerInput : MonoBehaviour
 
     public void Die()
     {
-
+        GameManager.instance.levelLoader.LoadScene("GameOverScreen");
     }
 }

@@ -28,5 +28,12 @@ public class LevelLoader : MonoBehaviour
 
         SceneManager.LoadScene(s);
 
+        SceneManager.sceneLoaded += TriggerLoadSceneAnim;
+
+    }
+
+    void TriggerLoadSceneAnim(Scene s, LoadSceneMode l)
+    {
+        transition.SetTrigger("SceneTransitionEnd");
     }
 }

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transition: {fileID: 5470026711329937770}
-  timeToChangeScene: 1
+  timeToChangeScene: 2
 --- !u!1 &3192641821723105350
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,6 +654,8 @@ MonoBehaviour:
   optionsLoader: {fileID: 0}
   levelLoader: {fileID: 0}
   pauseMenu: {fileID: 6687865482652886718}
+  hairsCollected: 0
+  louseAccumulated: 0
 --- !u!114 &8520966716116655224
 MonoBehaviour:
   m_ObjectHideFlags: 0

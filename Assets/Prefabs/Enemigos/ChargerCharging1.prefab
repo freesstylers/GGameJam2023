@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 5170087086593185736}
   - component: {fileID: 5170087086593185737}
   - component: {fileID: 5170087086593185739}
+  - component: {fileID: 2957781810828234884}
+  - component: {fileID: 5050884444429551597}
+  - component: {fileID: 735789830756509313}
   m_Layer: 0
   m_Name: ChargerCharging1
   m_TagString: Untagged
@@ -102,3 +105,52 @@ MonoBehaviour:
   chargeWindup: 1
   resetTime: 5
   detectDistance: 3
+--- !u!114 &2957781810828234884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5170087086593185734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4fb8066de1eca343883eba063a57929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 2
+--- !u!58 &5050884444429551597
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5170087086593185734}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.14
+--- !u!95 &735789830756509313
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5170087086593185734}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 85b7b1e91cab17e4681857be8ed027ec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
